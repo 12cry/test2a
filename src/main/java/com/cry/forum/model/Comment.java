@@ -23,6 +23,16 @@ public class Comment extends BaseEntity {
     @Column(name = "create_time")
     private Date createTime;
 
+    public Integer getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Integer postId) {
+        this.postId = postId;
+    }
+
+    @Column(name = "post_id")
+    private Integer postId;
 
     public List<Comment> getChildren() {
         return children;
