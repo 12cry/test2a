@@ -27,7 +27,8 @@
         <javaClientGenerator targetPackage="com.cry.forum.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
-        <table tableName="post">
+        <table tableName="file">
+<!--        <table tableName="post">-->
 <!--        <table tableName="comment">-->
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>

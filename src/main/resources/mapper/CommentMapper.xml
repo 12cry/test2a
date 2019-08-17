@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cry.forum.mapper.CommentMapper">
+    <resultMap id="BaseResultMap" type="com.cry.forum.model.Comment">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="pid" property="pid" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+        <result column="avatar_url" property="avatarUrl" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="post_id" property="postId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="query" resultMap="BaseResultMap">
+    select t.* from comment t where t.pid is null
+</select>
+    <select id="queryByPid" resultMap="BaseResultMap">
+    select t.* from comment t where t.pid =#{pid}
+</select>
+
+</mapper>

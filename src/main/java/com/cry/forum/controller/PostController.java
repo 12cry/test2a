@@ -6,7 +6,6 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class PostController {
         return new PageInfo<Post>(list);
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @PostMapping("/save")
     public ModelMap save(@RequestBody Post post) {
         ModelMap result = new ModelMap();
         String msg = post.getId() == null ? "新增成功!" : "更新成功!";
@@ -32,4 +31,13 @@ public class PostController {
         result.put("msg", msg);
         return result;
     }
+//    @RequestMapping(value = "/save", method = RequestMethod.POST)
+//    public ModelMap save(@RequestBody Post post) {
+//        ModelMap result = new ModelMap();
+//        String msg = post.getId() == null ? "新增成功!" : "更新成功!";
+//        postService.save(post);
+//        result.put("post", post);
+//        result.put("msg", msg);
+//        return result;
+//    }
 }

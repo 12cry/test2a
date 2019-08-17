@@ -1,7 +1,9 @@
 package com.cry.forum.service;
 
+import com.cry.forum.mapper.FileMapper;
 import com.cry.forum.mapper.PostMapper;
 import com.cry.forum.model.Comment;
+import com.cry.forum.model.File;
 import com.cry.forum.model.Post;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +18,17 @@ public class PostService {
     @Autowired
     PostMapper postMapper;
 
+    @Autowired
+    FileMapper fileMapper;
+
     public List<Post> query(Post post) {
         if (post.getPage() != null && post.getRows() != null) {
             PageHelper.startPage(post.getPage(), post.getRows()).setOrderBy("create_time desc");
         }
         List<Post> list = postMapper.query();
         for (Post o : list) {
-            List<Comment> commentList= postMapper.queryCommentList(o.getId());
+            List<Comment> commentList = postMapper.queryCommentList(o.getId());
+            o.setCommentList(commentList);
 
         }
         return list;
@@ -33,7 +39,6 @@ public class PostService {
             PageHelper.startPage(post.getPage(), post.getRows()).setOrderBy("create_time desc");
         }
 
-//        List list = postMapper.test();
         List list = postMapper.query();
         return list;
     }
@@ -55,11 +60,20 @@ public class PostService {
 
     public void save(Post post) {
 
-        if (post.getId() != null) {
-            postMapper.updateByPrimaryKey(post);
-        } else {
-            post.setCreateTime(new Date());
-            postMapper.insert(post);
+        post.setCreateTime(new Date());
+        int insert = postMapper.insert(post);
+
+
+        List<File> fileList = post.getFileList();
+
+        Date now = new Date();
+        if (fileList!=null&&!fileList.isEmpty()) {
+
+            for (File file:fileList){
+                file.setCreateTime(now);
+                file.setBizId(post.getId());
+            }
+            fileMapper.insertList(post.getFileList());
         }
     }
 }
