@@ -1,17 +1,14 @@
 package com.cry.forum.model;
 
+import javax.persistence.Column;
 import java.util.Date;
-import javax.persistence.*;
 
-public class File {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class File extends BaseEntity{
 
     private String name;
 
     @Column(name = "biz_id")
-    private Integer bizId;
+    private String bizId;
 
     private String url;
 
@@ -21,20 +18,6 @@ public class File {
 
     @Column(name = "create_time")
     private Date createTime;
-
-    /**
-     * @return id
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * @param id
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     /**
      * @return name
@@ -53,14 +36,14 @@ public class File {
     /**
      * @return biz_id
      */
-    public Integer getBizId() {
+    public String getBizId() {
         return bizId;
     }
 
     /**
      * @param bizId
      */
-    public void setBizId(Integer bizId) {
+    public void setBizId(String bizId) {
         this.bizId = bizId;
     }
 

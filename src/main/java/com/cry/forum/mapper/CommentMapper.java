@@ -13,5 +13,5 @@ public interface CommentMapper extends MyMapper<Comment> {
 
 
     List<Comment> query();
-    List<Comment> queryByPid(Integer pid);
+    List<Comment> queryByPid(String pid);
 }

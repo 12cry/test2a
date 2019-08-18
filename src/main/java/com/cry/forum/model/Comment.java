@@ -1,18 +1,17 @@
 package com.cry.forum.model;
 
-
 import javax.persistence.Column;
 import java.util.Date;
 import java.util.List;
 
-public class Comment extends BaseEntity {
+public class Comment extends BaseEntity{
 
-    private Integer pid;
+    private String pid;
 
     private String content;
 
     @Column(name = "user_id")
-    private Integer userId;
+    private String userId;
 
     @Column(name = "nick_name")
     private String nickName;
@@ -23,16 +22,11 @@ public class Comment extends BaseEntity {
     @Column(name = "create_time")
     private Date createTime;
 
-    public Integer getPostId() {
-        return postId;
-    }
+    @Column(name = "target_id")
+    private String targetId;
 
-    public void setPostId(Integer postId) {
-        this.postId = postId;
-    }
-
-    @Column(name = "post_id")
-    private Integer postId;
+    private String state;
+    List<Comment> children;
 
     public List<Comment> getChildren() {
         return children;
@@ -42,19 +36,17 @@ public class Comment extends BaseEntity {
         this.children = children;
     }
 
-    private List<Comment> children;
-
     /**
      * @return pid
      */
-    public Integer getPid() {
+    public String getPid() {
         return pid;
     }
 
     /**
      * @param pid
      */
-    public void setPid(Integer pid) {
+    public void setPid(String pid) {
         this.pid = pid;
     }
 
@@ -75,14 +67,14 @@ public class Comment extends BaseEntity {
     /**
      * @return user_id
      */
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
     /**
      * @param userId
      */
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -126,5 +118,33 @@ public class Comment extends BaseEntity {
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    /**
+     * @return target_id
+     */
+    public String getTargetId() {
+        return targetId;
+    }
+
+    /**
+     * @param targetId
+     */
+    public void setTargetId(String targetId) {
+        this.targetId = targetId;
+    }
+
+    /**
+     * @return state
+     */
+    public String getState() {
+        return state;
+    }
+
+    /**
+     * @param state
+     */
+    public void setState(String state) {
+        this.state = state;
     }
 }

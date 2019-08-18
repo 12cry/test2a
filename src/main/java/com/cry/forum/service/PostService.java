@@ -36,46 +36,23 @@ public class PostService {
         return list;
     }
 
-    public List<Post> test(Post post) {
-        if (post.getPage() != null && post.getRows() != null) {
-            PageHelper.startPage(post.getPage(), post.getRows()).setOrderBy("create_time desc");
-        }
-
-        List list = postMapper.query();
-        return list;
-    }
-
-    public List<Post> getAll(Post post) {
-        if (post.getPage() != null && post.getRows() != null) {
-            PageHelper.startPage(post.getPage(), post.getRows()).setOrderBy("create_time desc");
-        }
-        return postMapper.selectAll();
-    }
-
-    public Post getById(Integer id) {
-        return postMapper.selectByPrimaryKey(id);
-    }
-
-    public void deleteById(Integer id) {
-        postMapper.deleteByPrimaryKey(id);
-    }
-
     public void save(Post post) {
 
         post.setCreateTime(new Date());
-        int insert = postMapper.insert(post);
+        postMapper.insert(post);
 
 
         List<File> fileList = post.getFileList();
 
         Date now = new Date();
-        if (fileList!=null&&!fileList.isEmpty()) {
+        if (fileList != null && !fileList.isEmpty()) {
 
-            for (File file:fileList){
+            for (File file : fileList) {
                 file.setCreateTime(now);
                 file.setBizId(post.getId());
+                fileMapper.insert(file);
             }
-            fileMapper.insertList(post.getFileList());
+//            fileMapper.insertList(post.getFileList());
         }
     }
 }

@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface PostMapper extends MyMapper<Post> {
     public List<Post> query();
-    public List<Comment> queryCommentList(Integer id);
+    public List<Comment> queryCommentList(String id);
 }

@@ -5,12 +5,13 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="biz_id" jdbcType="INTEGER" property="bizId" />
+    <result column="biz_id" jdbcType="VARCHAR" property="bizId" />
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="size" jdbcType="BIGINT" property="size" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
+
 </mapper>
