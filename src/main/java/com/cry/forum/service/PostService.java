@@ -1,5 +1,6 @@
 package com.cry.forum.service;
 
+import com.cry.forum.mapper.CommentMapper;
 import com.cry.forum.mapper.FileMapper;
 import com.cry.forum.mapper.PostMapper;
 import com.cry.forum.model.Comment;
@@ -19,6 +20,8 @@ public class PostService {
     PostMapper postMapper;
 
     @Autowired
+    CommentMapper commentMapper;
+    @Autowired
     FileMapper fileMapper;
 
     public List<Post> query(Post post) {
@@ -27,7 +30,7 @@ public class PostService {
         }
         List<Post> list = postMapper.query();
         for (Post o : list) {
-            List<Comment> commentList = postMapper.queryCommentList(o.getId());
+            List<Comment> commentList = commentMapper.queryByTargetId(o.getId());
             o.setCommentList(commentList);
             List<File> fileList = fileMapper.queryByBizId(o.getId());
             o.setFileList(fileList);

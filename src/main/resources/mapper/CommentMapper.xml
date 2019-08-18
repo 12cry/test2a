@@ -16,9 +16,12 @@
     <result column="state" jdbcType="CHAR" property="state" />
   </resultMap>
 
-    <select id="query" resultMap="BaseResultMap">
-    select t.* from comment t where t.pid is null
+  <select id="queryByTargetId" resultMap="BaseResultMap">
+    select t.* from comment t where t.target_id=#{targetId}
 </select>
+<!--  <select id="query" resultMap="BaseResultMap">-->
+<!--    select t.* from comment t where t.pid is null-->
+<!--</select>-->
     <select id="queryByPid" resultMap="BaseResultMap">
     select t.* from comment t where t.pid =#{pid}
 </select>

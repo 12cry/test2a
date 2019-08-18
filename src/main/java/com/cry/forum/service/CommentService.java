@@ -6,7 +6,6 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class CommentService {
         if (comment.getPage() != null && comment.getRows() != null) {
             PageHelper.startPage(comment.getPage(), comment.getRows()).setOrderBy("create_time desc");
         }
-        List<Comment> list = commentMapper.query();
+        List<Comment> list = commentMapper.queryByTargetId(comment.getTargetId());
         for (Comment c : list) {
             List<Comment> children = commentMapper.queryByPid(c.getId());
             c.setChildren(children);
@@ -32,9 +31,7 @@ public class CommentService {
         if (comment.getPage() != null && comment.getRows() != null) {
             PageHelper.startPage(comment.getPage(), comment.getRows()).setOrderBy("create_time desc");
         }
-
-//        List list = commentMapper.test();
-        List list = commentMapper.query();
+        List list = commentMapper.queryByTargetId(comment.getTargetId());
         return list;
     }
 

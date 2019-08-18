@@ -18,7 +18,5 @@
     <select id="query" resultMap="BaseResultMap">
     select t.* from post t
 </select>
-    <select id="queryCommentList" resultMap="BaseResultMap">
-    select t.* from comment t where t.target_id=#{id}
-</select>
+
 </mapper>

@@ -18,7 +18,7 @@ public class CommentController {
 
 
     @RequestMapping(value = "query")
-    public PageInfo<Comment> query(Comment comment) {
+    public PageInfo<Comment> query(@RequestBody Comment comment) {
         List<Comment> list = commentService.query(comment);
         return new PageInfo<Comment>(list);
     }

@@ -17,7 +17,7 @@ public class PostController {
 
 
     @RequestMapping(value = "query")
-    public PageInfo<Post> query(Post post) {
+    public PageInfo<Post> query(@RequestBody Post post) {
         List<Post> list = postService.query(post);
         return new PageInfo<Post>(list);
     }
@@ -31,13 +31,4 @@ public class PostController {
         result.put("msg", msg);
         return result;
     }
-//    @RequestMapping(value = "/save", method = RequestMethod.POST)
-//    public ModelMap save(@RequestBody Post post) {
-//        ModelMap result = new ModelMap();
-//        String msg = post.getId() == null ? "新增成功!" : "更新成功!";
-//        postService.save(post);
-//        result.put("post", post);
-//        result.put("msg", msg);
-//        return result;
-//    }
 }
