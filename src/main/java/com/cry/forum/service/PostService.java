@@ -29,6 +29,8 @@ public class PostService {
         for (Post o : list) {
             List<Comment> commentList = postMapper.queryCommentList(o.getId());
             o.setCommentList(commentList);
+            List<File> fileList = fileMapper.queryByBizId(o.getId());
+            o.setFileList(fileList);
 
         }
         return list;
