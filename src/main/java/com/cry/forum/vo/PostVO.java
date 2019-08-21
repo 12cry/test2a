@@ -1,37 +1,111 @@
-package com.cry.forum.model;
+package com.cry.forum.vo;
 
-import javax.persistence.Column;
+import com.cry.forum.model.Comment;
+import com.cry.forum.model.File;
+
 import java.util.Date;
 import java.util.List;
 
-public class Post extends BaseEntity{
+public class PostVO {
+    private String id;
     private String title;
 
     private String content;
 
-    @Column(name = "user_id")
     private String userId;
 
-    @Column(name = "cagetory_id")
     private String cagetoryId;
 
-    @Column(name = "create_time")
     private Date createTime;
 
     private String state;
 
     private Integer appreciate;
+    private String avatarUrl;
+    private String nickName;
 
     private List<Comment> commentList;
 
     private List<File> fileList;
 
-    public List<File> getFileList() {
-        return fileList;
+    public String getId() {
+        return id;
     }
 
-    public void setFileList(List<File> fileList) {
-        this.fileList = fileList;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getCagetoryId() {
+        return cagetoryId;
+    }
+
+    public void setCagetoryId(String cagetoryId) {
+        this.cagetoryId = cagetoryId;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public Integer getAppreciate() {
+        return appreciate;
+    }
+
+    public void setAppreciate(Integer appreciate) {
+        this.appreciate = appreciate;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public List<Comment> getCommentList() {
@@ -42,101 +116,13 @@ public class Post extends BaseEntity{
         this.commentList = commentList;
     }
 
-    /**
-     * @return title
-     */
-    public String getTitle() {
-        return title;
+    public List<File> getFileList() {
+        return fileList;
     }
 
-    /**
-     * @param title
-     */
-    public void setTitle(String title) {
-        this.title = title;
+    public void setFileList(List<File> fileList) {
+        this.fileList = fileList;
     }
 
-    /**
-     * @return content
-     */
-    public String getContent() {
-        return content;
-    }
 
-    /**
-     * @param content
-     */
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    /**
-     * @return user_id
-     */
-    public String getUserId() {
-        return userId;
-    }
-
-    /**
-     * @param userId
-     */
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    /**
-     * @return cagetory_id
-     */
-    public String getCagetoryId() {
-        return cagetoryId;
-    }
-
-    /**
-     * @param cagetoryId
-     */
-    public void setCagetoryId(String cagetoryId) {
-        this.cagetoryId = cagetoryId;
-    }
-
-    /**
-     * @return create_time
-     */
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    /**
-     * @param createTime
-     */
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    /**
-     * @return state
-     */
-    public String getState() {
-        return state;
-    }
-
-    /**
-     * @param state
-     */
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    /**
-     * @return appreciate
-     */
-    public Integer getAppreciate() {
-        return appreciate;
-    }
-
-    /**
-     * @param appreciate
-     */
-    public void setAppreciate(Integer appreciate) {
-        this.appreciate = appreciate;
-    }
 }

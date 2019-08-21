@@ -31,7 +31,7 @@ public class CommentService {
         if (comment.getPage() != null && comment.getRows() != null) {
             PageHelper.startPage(comment.getPage(), comment.getRows()).setOrderBy("create_time desc");
         }
-        List list = commentMapper.queryByTargetId(comment.getTargetId());
+        List list = commentMapper.test();
         return list;
     }
 

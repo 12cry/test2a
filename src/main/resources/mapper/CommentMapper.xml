@@ -9,13 +9,11 @@
     <result column="pid" jdbcType="VARCHAR" property="pid" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
-    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
-    <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="target_id" jdbcType="VARCHAR" property="targetId" />
     <result column="state" jdbcType="CHAR" property="state" />
+    <result column="appreciate" jdbcType="INTEGER" property="appreciate" />
   </resultMap>
-
   <select id="queryByTargetId" resultMap="BaseResultMap">
     select t.* from comment t where t.target_id=#{targetId}
 </select>

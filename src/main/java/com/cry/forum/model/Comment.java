@@ -5,19 +5,12 @@ import java.util.Date;
 import java.util.List;
 
 public class Comment extends BaseEntity{
-
     private String pid;
 
     private String content;
 
     @Column(name = "user_id")
     private String userId;
-
-    @Column(name = "nick_name")
-    private String nickName;
-
-    @Column(name = "avatar_url")
-    private String avatarUrl;
 
     @Column(name = "create_time")
     private Date createTime;
@@ -26,7 +19,8 @@ public class Comment extends BaseEntity{
     private String targetId;
 
     private String state;
-    List<Comment> children;
+
+    private Integer appreciate;
 
     public List<Comment> getChildren() {
         return children;
@@ -36,9 +30,7 @@ public class Comment extends BaseEntity{
         this.children = children;
     }
 
-    /**
-     * @return pid
-     */
+    private List<Comment> children;
     public String getPid() {
         return pid;
     }
@@ -76,34 +68,6 @@ public class Comment extends BaseEntity{
      */
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    /**
-     * @return nick_name
-     */
-    public String getNickName() {
-        return nickName;
-    }
-
-    /**
-     * @param nickName
-     */
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
-    /**
-     * @return avatar_url
-     */
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    /**
-     * @param avatarUrl
-     */
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
     }
 
     /**
@@ -146,5 +110,19 @@ public class Comment extends BaseEntity{
      */
     public void setState(String state) {
         this.state = state;
+    }
+
+    /**
+     * @return appreciate
+     */
+    public Integer getAppreciate() {
+        return appreciate;
+    }
+
+    /**
+     * @param appreciate
+     */
+    public void setAppreciate(Integer appreciate) {
+        this.appreciate = appreciate;
     }
 }
