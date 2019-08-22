@@ -2,6 +2,7 @@ package com.cry.forum.controller;
 
 import com.cry.forum.model.Comment;
 import com.cry.forum.service.CommentService;
+import com.cry.forum.vo.CommentVO;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -18,9 +19,13 @@ public class CommentController {
 
 
     @RequestMapping(value = "query")
-    public PageInfo<Comment> query(@RequestBody Comment comment) {
-        List<Comment> list = commentService.query(comment);
-        return new PageInfo<Comment>(list);
+    public PageInfo<CommentVO> query(@RequestBody Comment comment) {
+        List<CommentVO> list = commentService.query(comment);
+        return new PageInfo<CommentVO>(list);
+    }
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public CommentVO save(@RequestBody Comment comment) {
+        return commentService.save(comment);
     }
 
     @RequestMapping(value = "test")
@@ -55,13 +60,4 @@ public class CommentController {
         return result;
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ModelMap save(@RequestBody Comment comment) {
-        ModelMap result = new ModelMap();
-        String msg = comment.getId() == null ? "新增成功!" : "更新成功!";
-        commentService.save(comment);
-        result.put("comment", comment);
-        result.put("msg", msg);
-        return result;
-    }
 }

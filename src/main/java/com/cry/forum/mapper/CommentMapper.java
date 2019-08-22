@@ -1,6 +1,7 @@
 package com.cry.forum.mapper;
 
 import com.cry.forum.model.Comment;
+import com.cry.forum.vo.CommentVO;
 import org.apache.ibatis.annotations.Select;
 import util.MyMapper;
 
@@ -12,6 +13,6 @@ public interface CommentMapper extends MyMapper<Comment> {
     List<Comment> test();
 
 
-    List<Comment> queryByTargetId(String targetId);
-    List<Comment> queryByPid(String pid);
+    List<CommentVO> queryByTargetId(String targetId);
+    List<CommentVO> queryByPid(String pid);
 }

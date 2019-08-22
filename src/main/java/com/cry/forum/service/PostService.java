@@ -4,10 +4,10 @@ import com.cry.forum.mapper.CommentMapper;
 import com.cry.forum.mapper.FileMapper;
 import com.cry.forum.mapper.PostMapper;
 import com.cry.forum.mapper.UserMapper;
-import com.cry.forum.model.Comment;
 import com.cry.forum.model.File;
 import com.cry.forum.model.Post;
 import com.cry.forum.model.User;
+import com.cry.forum.vo.CommentVO;
 import com.cry.forum.vo.PostVO;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
@@ -37,8 +37,8 @@ public class PostService {
         }
         List<PostVO> list = postMapper.query();
         for (PostVO o : list) {
-            List<Comment> commentList = commentMapper.queryByTargetId(o.getId());
-            o.setCommentList(commentList);
+            List<CommentVO> commentVOList = commentMapper.queryByTargetId(o.getId());
+            o.setCommentVOList(commentVOList);
             List<File> fileList = fileMapper.queryByBizId(o.getId());
             o.setFileList(fileList);
 
@@ -47,17 +47,16 @@ public class PostService {
     }
 
     public PostVO save(Post post) {
+        Date now = new Date();
 
         String openid = Request.getCurrentOpenid();
-        post.setCreateTime(new Date());
-        post.setUserId(openid);
+        User user = userMapper.queryByOpenid(openid);
+        post.setCreateTime(now);
+        post.setUserId(user.getId());
         postMapper.insert(post);
 
         List<File> fileList = post.getFileList();
-
-        Date now = new Date();
         if (fileList != null && !fileList.isEmpty()) {
-
             for (File file : fileList) {
                 file.setCreateTime(now);
                 file.setBizId(post.getId());
@@ -65,7 +64,7 @@ public class PostService {
             }
 //            fileMapper.insertList(post.getFileList());
         }
-        User user = userMapper.selectByPrimaryKey(openid);
+
         PostVO postVO = new PostVO();
         postVO.setFileList(fileList);
         BeanUtils.copyProperties(post, postVO);

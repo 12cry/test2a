@@ -1,6 +1,5 @@
 package com.cry.forum.vo;
 
-import com.cry.forum.model.Comment;
 import com.cry.forum.model.File;
 
 import java.util.Date;
@@ -24,9 +23,17 @@ public class PostVO {
     private String avatarUrl;
     private String nickName;
 
-    private List<Comment> commentList;
+    private List<CommentVO> commentVOList;
 
     private List<File> fileList;
+
+    public List<CommentVO> getCommentVOList() {
+        return commentVOList;
+    }
+
+    public void setCommentVOList(List<CommentVO> commentVOList) {
+        this.commentVOList = commentVOList;
+    }
 
     public String getId() {
         return id;
@@ -106,14 +113,6 @@ public class PostVO {
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
-    }
-
-    public List<Comment> getCommentList() {
-        return commentList;
-    }
-
-    public void setCommentList(List<Comment> commentList) {
-        this.commentList = commentList;
     }
 
     public List<File> getFileList() {

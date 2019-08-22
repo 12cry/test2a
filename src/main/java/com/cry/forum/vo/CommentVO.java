@@ -1,118 +1,114 @@
-package com.cry.forum.model;
+package com.cry.forum.vo;
 
-import javax.persistence.Column;
 import java.util.Date;
+import java.util.List;
 
-public class Comment extends BaseEntity {
+public class CommentVO {
+    private String id;
     private String pid;
 
     private String content;
 
-    @Column(name = "user_id")
     private String userId;
 
-    @Column(name = "create_time")
     private Date createTime;
 
-    @Column(name = "target_id")
     private String targetId;
 
     private String state;
 
     private Integer appreciate;
 
+    private List<CommentVO> children;
+
+    private String avatarUrl;
+    private String nickName;
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getPid() {
         return pid;
     }
 
-    /**
-     * @param pid
-     */
     public void setPid(String pid) {
         this.pid = pid;
     }
 
-    /**
-     * @return content
-     */
     public String getContent() {
         return content;
     }
 
-    /**
-     * @param content
-     */
     public void setContent(String content) {
         this.content = content;
     }
 
-    /**
-     * @return user_id
-     */
     public String getUserId() {
         return userId;
     }
 
-    /**
-     * @param userId
-     */
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    /**
-     * @return create_time
-     */
     public Date getCreateTime() {
         return createTime;
     }
 
-    /**
-     * @param createTime
-     */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-    /**
-     * @return target_id
-     */
     public String getTargetId() {
         return targetId;
     }
 
-    /**
-     * @param targetId
-     */
     public void setTargetId(String targetId) {
         this.targetId = targetId;
     }
 
-    /**
-     * @return state
-     */
     public String getState() {
         return state;
     }
 
-    /**
-     * @param state
-     */
     public void setState(String state) {
         this.state = state;
     }
 
-    /**
-     * @return appreciate
-     */
     public Integer getAppreciate() {
         return appreciate;
     }
 
-    /**
-     * @param appreciate
-     */
     public void setAppreciate(Integer appreciate) {
         this.appreciate = appreciate;
+    }
+
+    public List<CommentVO> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<CommentVO> children) {
+        this.children = children;
     }
 }

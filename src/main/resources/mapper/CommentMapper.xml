@@ -14,14 +14,14 @@
     <result column="state" jdbcType="CHAR" property="state" />
     <result column="appreciate" jdbcType="INTEGER" property="appreciate" />
   </resultMap>
-  <select id="queryByTargetId" resultMap="BaseResultMap">
-    select t.* from comment t where t.target_id=#{targetId}
+  <select id="queryByTargetId" resultType="com.cry.forum.vo.CommentVO">
+    select t.*,(select t1.avatar_url from user t1 where t.user_id = t1.id) avatar_url,(select t1.nick_name from user t1 where t.user_id = t1.id) nick_name  from comment t where t.target_id=#{targetId}
 </select>
 <!--  <select id="query" resultMap="BaseResultMap">-->
 <!--    select t.* from comment t where t.pid is null-->
 <!--</select>-->
-    <select id="queryByPid" resultMap="BaseResultMap">
-    select t.* from comment t where t.pid =#{pid}
+    <select id="queryByPid" resultType="com.cry.forum.vo.CommentVO">
+    select t.*,(select t1.avatar_url from user t1 where t.user_id = t1.id) avatar_url,(select t1.nick_name from user t1 where t.user_id = t1.id) nick_name  from comment t where t.pid =#{pid}
 </select>
 
 </mapper>

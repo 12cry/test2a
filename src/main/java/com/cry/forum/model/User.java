@@ -1,15 +1,11 @@
 package com.cry.forum.model;
 
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.util.Date;
 
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+public class User extends BaseEntity{
+
+    private String openid;
 
     @Column(name = "nick_name")
     private String nickName;
@@ -31,18 +27,19 @@ public class User {
     @Column(name = "update_time")
     private Date updateTime;
 
+
     /**
-     * @return id
+     * @return openid
      */
-    public String getId() {
-        return id;
+    public String getOpenid() {
+        return openid;
     }
 
     /**
-     * @param id
+     * @param openid
      */
-    public void setId(String id) {
-        this.id = id;
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 
     /**

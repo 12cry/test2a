@@ -25,7 +25,9 @@ public class UserService {
         String res = Http.get(url);
         JSONObject jsonObject = new JSONObject(res);
         String openid = jsonObject.getString("openid");
-        User existUser= userMapper.selectByPrimaryKey(openid);
+
+        User existUser = userMapper.queryByOpenid(openid);
+//        User existUser= userMapper.selectByPrimaryKey(openid);
         Date now = new Date();
         if (existUser != null) {
             existUser.setUpdateTime(now);
@@ -33,7 +35,7 @@ public class UserService {
             existUser.setNickName(user.getNickName());
             userMapper.updateByPrimaryKey(existUser);
         } else {
-            user.setId(openid);
+            user.setOpenid(openid);
             user.setCreateTime(now);
             userMapper.insert(user);
         }
