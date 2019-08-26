@@ -40,7 +40,7 @@ public class UserService {
             userMapper.insert(user);
         }
 
-        String token = Jwt.createJWT(openid);
+        String token = Jwt.createJWT(user.getId());
         return token;
     }
 }

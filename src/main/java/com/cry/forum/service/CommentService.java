@@ -35,8 +35,8 @@ public class CommentService {
     }
 
     public CommentVO save(Comment comment) {
-        String openid = Request.getCurrentOpenid();
-        User user  = userMapper.queryByOpenid(openid);
+        String userId= Request.getCurrentUserId();
+        User user = userMapper.selectByPrimaryKey(userId);
         comment.setUserId(user.getId());
         comment.setCreateTime(new Date());
         commentMapper.insert(comment);

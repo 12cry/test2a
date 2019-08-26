@@ -32,6 +32,8 @@ public class PostService {
     UserPostMapper userPostMapper;
 
     public void updateUserPost(UserPost userPost){
+        String userId = Request.getCurrentUserId();
+        userPost.setUserId(userId);
         userPostMapper.updateByPrimaryKey(userPost);
 
     }
@@ -40,13 +42,7 @@ public class PostService {
             PageHelper.startPage(post.getPage(), post.getRows()).setOrderBy("create_time desc");
         }
 
-        String openid = Request.getCurrentOpenid();
-        String userId = null;
-        if (openid != null) {
-            User user = userMapper.queryByOpenid(openid);
-            userId = user.getId();
-        }
-
+        String userId = Request.getCurrentUserId();
         List<PostVO> list = postMapper.query(userId);
         for (PostVO o : list) {
             List<CommentVO> commentVOList = commentMapper.queryByTargetId(o.getId());
@@ -61,10 +57,10 @@ public class PostService {
     public PostVO save(Post post) {
         Date now = new Date();
 
-        String openid = Request.getCurrentOpenid();
-        User user = userMapper.queryByOpenid(openid);
+        String userId = Request.getCurrentUserId();
+        User user = userMapper.selectByPrimaryKey(userId);
         post.setCreateTime(now);
-        post.setUserId(user.getId());
+        post.setUserId(userId);
         postMapper.insert(post);
 
         List<File> fileList = post.getFileList();
@@ -77,14 +73,14 @@ public class PostService {
 //            fileMapper.insertList(post.getFileList());
         }
         UserPost userPost = new UserPost();
-        userPost.setUserId(user.getId());
+        userPost.setUserId(userId);
         userPost.setPostId(post.getId());
         userPostMapper.insert(userPost);
 
         PostVO postVO = new PostVO();
         postVO.setFileList(fileList);
-        BeanUtils.copyProperties(post, postVO);
         BeanUtils.copyProperties(user, postVO);
+        BeanUtils.copyProperties(post, postVO);
         return postVO;
 
 

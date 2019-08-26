@@ -15,8 +15,8 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
         if (!StringUtil.isEmpty(authorization)) {
             String token = authorization.substring(7);
             Claims claims = Jwt.parseJWT(token);
-            String openid = claims.getSubject();
-            request.setAttribute("openid", openid);
+            String userId = claims.getSubject();
+            request.setAttribute("userId", userId);
         }
         return super.preHandle(request, response, handler);
     }

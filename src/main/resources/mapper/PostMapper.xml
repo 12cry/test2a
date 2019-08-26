@@ -27,7 +27,7 @@
         WHERE
             t.user_id = t1.id) nick_name,
     (SELECT
-            1
+           t1.appreciate
         FROM
             user_post t1
         WHERE

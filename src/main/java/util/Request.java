@@ -6,10 +6,10 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 public class Request {
-    public static String getCurrentOpenid() {
+    public static String getCurrentUserId() {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        String openid = (String) request.getAttribute("openid");
-        return openid;
+        String userId= (String) request.getAttribute("userId");
+        return userId;
 
     }
 }
