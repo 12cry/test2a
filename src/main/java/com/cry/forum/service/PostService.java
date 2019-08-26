@@ -31,12 +31,13 @@ public class PostService {
     @Autowired
     UserPostMapper userPostMapper;
 
-    public void updateUserPost(UserPost userPost){
+    public void appreciate(UserPost userPost) {
+
         String userId = Request.getCurrentUserId();
-        userPost.setUserId(userId);
-        userPostMapper.updateByPrimaryKey(userPost);
+        userPostMapper.saveOrUpdate(userId, userPost.getPostId(), userPost.getAppreciate());
 
     }
+
     public List<PostVO> query(Post post) {
         if (post.getPage() != null && post.getRows() != null) {
             PageHelper.startPage(post.getPage(), post.getRows()).setOrderBy("create_time desc");
@@ -45,7 +46,7 @@ public class PostService {
         String userId = Request.getCurrentUserId();
         List<PostVO> list = postMapper.query(userId);
         for (PostVO o : list) {
-            List<CommentVO> commentVOList = commentMapper.queryByTargetId(o.getId());
+            List<CommentVO> commentVOList = commentMapper.queryByTargetId(userId,o.getId());
             o.setCommentVOList(commentVOList);
             List<File> fileList = fileMapper.queryByBizId(o.getId());
             o.setFileList(fileList);
@@ -72,10 +73,7 @@ public class PostService {
             }
 //            fileMapper.insertList(post.getFileList());
         }
-        UserPost userPost = new UserPost();
-        userPost.setUserId(userId);
-        userPost.setPostId(post.getId());
-        userPostMapper.insert(userPost);
+
 
         PostVO postVO = new PostVO();
         postVO.setFileList(fileList);

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cry.forum.mapper.UserCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.cry.forum.model.UserComment" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <id column="comment_id" property="commentId" jdbcType="VARCHAR" />
+    <result column="appreciate" property="appreciate" jdbcType="BIT" />
+    <result column="collect" property="collect" jdbcType="BIT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="saveOrUpdate">
+    insert ignore into user_comment(user_id,comment_id,appreciate) values(#{userId},#{commentId},#{appreciate}) ON DUPLICATE KEY update appreciate=#{appreciate}
+  </insert>
+</mapper>

@@ -1,6 +1,7 @@
 package com.cry.forum.controller;
 
 import com.cry.forum.model.Comment;
+import com.cry.forum.model.UserComment;
 import com.cry.forum.service.CommentService;
 import com.cry.forum.vo.CommentVO;
 import com.github.pagehelper.PageInfo;
@@ -17,6 +18,11 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
+
+    @RequestMapping(value = "appreciate")
+    public void appreciate(@RequestBody UserComment userComment){
+        commentService.appreciate(userComment);
+    }
 
     @RequestMapping(value = "query")
     public PageInfo<CommentVO> query(@RequestBody Comment comment) {

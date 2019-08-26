@@ -13,6 +13,6 @@ public interface CommentMapper extends MyMapper<Comment> {
     List<Comment> test();
 
 
-    List<CommentVO> queryByTargetId(String targetId);
+    List<CommentVO> queryByTargetId(String userId,String targetId);
     List<CommentVO> queryByPid(String pid);
 }

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import util.Request;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class PostController {
 
     @RequestMapping(value = "appreciate")
     public void appreciate(@RequestBody UserPost userPost){
-        postService.updateUserPost(userPost);
+        postService.appreciate(userPost);
     }
 
     @RequestMapping(value = "query")

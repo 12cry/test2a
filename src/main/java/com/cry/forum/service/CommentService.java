@@ -1,9 +1,11 @@
 package com.cry.forum.service;
 
 import com.cry.forum.mapper.CommentMapper;
+import com.cry.forum.mapper.UserCommentMapper;
 import com.cry.forum.mapper.UserMapper;
 import com.cry.forum.model.Comment;
 import com.cry.forum.model.User;
+import com.cry.forum.model.UserComment;
 import com.cry.forum.vo.CommentVO;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
@@ -21,12 +23,20 @@ public class CommentService {
     CommentMapper commentMapper;
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    UserCommentMapper userCommentMapper;
 
+    public void appreciate(UserComment userComment) {
+
+        String userId = Request.getCurrentUserId();
+        userCommentMapper.saveOrUpdate(userId, userComment.getCommentId(), userComment.getAppreciate());
+
+    }
     public List<CommentVO> query(Comment comment) {
         if (comment.getPage() != null && comment.getRows() != null) {
             PageHelper.startPage(comment.getPage(), comment.getRows()).setOrderBy("create_time desc");
         }
-        List<CommentVO> list = commentMapper.queryByTargetId(comment.getTargetId());
+        List<CommentVO> list = commentMapper.queryByTargetId(Request.getCurrentUserId(),comment.getTargetId());
         for (CommentVO c : list) {
             List<CommentVO> children = commentMapper.queryByPid(c.getId());
             c.setChildren(children);

@@ -10,4 +10,7 @@
     <result column="appreciate" jdbcType="BIT" property="appreciate" />
     <result column="collect" jdbcType="BIT" property="collect" />
   </resultMap>
+  <insert id="saveOrUpdate">
+    insert ignore into user_post(user_id,post_id,appreciate) values(#{userId},#{postId},#{appreciate}) ON DUPLICATE KEY update appreciate=#{appreciate}
+  </insert>
 </mapper>

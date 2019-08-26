@@ -12,10 +12,33 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="target_id" jdbcType="VARCHAR" property="targetId" />
     <result column="state" jdbcType="CHAR" property="state" />
-    <result column="appreciate" property="appreciate" jdbcType="BIT" />
   </resultMap>
   <select id="queryByTargetId" resultType="com.cry.forum.vo.CommentVO">
-    select t.*,(select t1.avatar_url from user t1 where t.user_id = t1.id) avatar_url,(select t1.nick_name from user t1 where t.user_id = t1.id) nick_name  from comment t where t.target_id=#{targetId}
+        SELECT
+    t.*,
+    (SELECT
+            t1.avatar_url
+        FROM
+            user t1
+        WHERE
+            t.user_id = t1.id) avatar_url,
+    (SELECT
+            t1.nick_name
+        FROM
+            user t1
+        WHERE
+            t.user_id = t1.id) nick_name,
+    (SELECT
+            t1.appreciate
+        FROM
+            user_comment t1
+        WHERE
+            t1.comment_id = t.id
+                AND t1.user_id = #{userId}) appreciate
+FROM
+    comment t
+WHERE
+    t.target_id = #{targetId}
 </select>
 <!--  <select id="query" resultMap="BaseResultMap">-->
 <!--    select t.* from comment t where t.pid is null-->
