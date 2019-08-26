@@ -19,7 +19,7 @@ public class Comment extends BaseEntity {
 
     private String state;
 
-    private Integer appreciate;
+    private Boolean appreciate;
 
     public String getPid() {
         return pid;
@@ -102,17 +102,11 @@ public class Comment extends BaseEntity {
         this.state = state;
     }
 
-    /**
-     * @return appreciate
-     */
-    public Integer getAppreciate() {
+    public Boolean getAppreciate() {
         return appreciate;
     }
 
-    /**
-     * @param appreciate
-     */
-    public void setAppreciate(Integer appreciate) {
+    public void setAppreciate(Boolean appreciate) {
         this.appreciate = appreciate;
     }
 }

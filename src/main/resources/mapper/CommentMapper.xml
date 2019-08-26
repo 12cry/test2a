@@ -12,7 +12,7 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="target_id" jdbcType="VARCHAR" property="targetId" />
     <result column="state" jdbcType="CHAR" property="state" />
-    <result column="appreciate" jdbcType="INTEGER" property="appreciate" />
+    <result column="appreciate" property="appreciate" jdbcType="BIT" />
   </resultMap>
   <select id="queryByTargetId" resultType="com.cry.forum.vo.CommentVO">
     select t.*,(select t1.avatar_url from user t1 where t.user_id = t1.id) avatar_url,(select t1.nick_name from user t1 where t.user_id = t1.id) nick_name  from comment t where t.target_id=#{targetId}

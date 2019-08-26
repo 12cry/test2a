@@ -42,8 +42,8 @@ public class CommentService {
         commentMapper.insert(comment);
 
         CommentVO commentVO = new CommentVO();
-        BeanUtils.copyProperties(comment, commentVO);
         BeanUtils.copyProperties(user,commentVO);
+        BeanUtils.copyProperties(comment, commentVO);
 
         return commentVO;
     }

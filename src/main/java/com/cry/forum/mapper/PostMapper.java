@@ -7,6 +7,6 @@ import util.MyMapper;
 import java.util.List;
 
 public interface PostMapper extends MyMapper<Post> {
-    public List<PostVO> query();
+    public List<PostVO> query(String userId);
 //    public List<Comment> queryCommentList(String id);
 }

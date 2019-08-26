@@ -20,7 +20,6 @@ public class Post extends BaseEntity{
 
     private String state;
 
-    private Integer appreciate;
 
     private List<Comment> commentList;
 
@@ -126,17 +125,5 @@ public class Post extends BaseEntity{
         this.state = state;
     }
 
-    /**
-     * @return appreciate
-     */
-    public Integer getAppreciate() {
-        return appreciate;
-    }
 
-    /**
-     * @param appreciate
-     */
-    public void setAppreciate(Integer appreciate) {
-        this.appreciate = appreciate;
-    }
 }

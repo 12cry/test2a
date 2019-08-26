@@ -19,7 +19,7 @@ public class PostVO {
 
     private String state;
 
-    private Integer appreciate;
+    private Boolean appreciate;
     private String avatarUrl;
     private String nickName;
 
@@ -91,11 +91,11 @@ public class PostVO {
         this.state = state;
     }
 
-    public Integer getAppreciate() {
+    public Boolean getAppreciate() {
         return appreciate;
     }
 
-    public void setAppreciate(Integer appreciate) {
+    public void setAppreciate(Boolean appreciate) {
         this.appreciate = appreciate;
     }
 

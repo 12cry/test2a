@@ -17,7 +17,7 @@ public class CommentVO {
 
     private String state;
 
-    private Integer appreciate;
+    private Boolean appreciate;
 
     private List<CommentVO> children;
 
@@ -96,11 +96,11 @@ public class CommentVO {
         this.state = state;
     }
 
-    public Integer getAppreciate() {
+    public Boolean getAppreciate() {
         return appreciate;
     }
 
-    public void setAppreciate(Integer appreciate) {
+    public void setAppreciate(Boolean appreciate) {
         this.appreciate = appreciate;
     }
 

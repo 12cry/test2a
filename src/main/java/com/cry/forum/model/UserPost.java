@@ -3,18 +3,18 @@ package com.cry.forum.model;
 import javax.persistence.*;
 
 @Table(name = "user_post")
-public class UserPost extends BaseEntity{
-
+public class UserPost {
+    @Id
     @Column(name = "user_id")
     private String userId;
 
+    @Id
     @Column(name = "post_id")
     private String postId;
 
     private Boolean appreciate;
 
     private Boolean collect;
-
 
     /**
      * @return user_id
