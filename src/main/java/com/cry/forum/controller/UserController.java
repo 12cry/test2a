@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -23,6 +28,7 @@ public class UserController {
 
         public User user;
         public String code;
+        public String username;
     }
 
     @PostMapping("/login")
@@ -32,8 +38,27 @@ public class UserController {
         String token = userService.login(vo);
         mm.addAttribute("token", token);
         return mm;
-
-
     }
 
+    @PostMapping("/login2")
+    public ModelMap login2(@RequestBody LoginVO vo) throws JSONException {
+        ModelMap mm = new ModelMap();
+        if ("yy".equals(vo.username)) {
+            mm.addAttribute("token", "aaaaaaaaaaaaaaaaaaaaaaaaa");
+            mm.addAttribute("code", 20000);
+        }
+        return mm;
+    }
+
+    @RequestMapping("/info")
+    public ModelMap getUserInfo() {
+        ModelMap mm = new ModelMap();
+        mm.addAttribute("code", 20000);
+        Map<String, List<String>> data = new HashMap<>();
+        List<String> roles = new ArrayList<>();
+        roles.add("admin");
+        data.put("roles",roles);
+        mm.addAttribute("data", data);
+        return mm;
+    }
 }

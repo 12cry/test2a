@@ -33,6 +33,7 @@ public class ArticleService {
     public Article save(Article article) {
         Date now = new Date();
         article.setUpdateTime(now);
+        article.setPublicTime(now);
         if (article.getId() != null) {
             articleMapper.updateByPrimaryKey(article);
         } else {

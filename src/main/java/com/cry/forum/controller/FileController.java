@@ -1,5 +1,6 @@
 package com.cry.forum.controller;
 
+import com.cry.forum.common.FileProperties;
 import com.cry.forum.model.File;
 import com.cry.forum.service.FileService;
 import org.slf4j.Logger;
@@ -11,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -28,14 +28,18 @@ public class FileController {
     @Autowired
     private FileService fileService;
 
+    @Autowired
+    private FileProperties fileProperties;
+
     @PostMapping("/upload")
     public File uploadFile(@RequestParam("file") MultipartFile file) {
         String fileName = fileService.storeFile(file);
 
-        String url = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/file/")
-                .path(fileName)
-                .toUriString();
+//        String url = ServletUriComponentsBuilder.fromCurrentContextPath()
+//                .path("/f/")
+//                .path(fileName)
+//                .toUriString();
+        String url = fileProperties.getUploadUrl()+"/f/"+fileName;
         File f = new File();
         f.setName(fileName);
         f.setUrl(url);
