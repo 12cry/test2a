@@ -5,7 +5,6 @@ import com.cry.forum.model.Article;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import util.Request;
 
 import java.util.Date;
 import java.util.List;
@@ -17,16 +16,23 @@ public class ArticleService {
     ArticleMapper articleMapper;
 
 
+    public List<Article> query2(Article article) {
+        if (article.getPage() != null && article.getRows() != null) {
+            PageHelper.startPage(article.getPage(), article.getRows()).setOrderBy("create_time desc");
+        }
+        List<Article> list = articleMapper.select(article);
+        return list;
+    }
+
     public List<Article> query(Article article) {
         if (article.getPage() != null && article.getRows() != null) {
             PageHelper.startPage(article.getPage(), article.getRows()).setOrderBy("create_time desc");
         }
-
-        String userId = Request.getCurrentUserId();
         List<Article> list = articleMapper.select(article);
         return list;
     }
-    public Article queryById(String id){
+
+    public Article queryById(String id) {
         return articleMapper.selectByPrimaryKey(id);
     }
 

@@ -14,6 +14,13 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
+
+    @RequestMapping(value = "query2")
+    public PageInfo<Article> query2(Article article) {
+        List<Article> list = articleService.query2(article);
+        return new PageInfo<Article>(list);
+    }
+
     @RequestMapping(value = "query")
     public PageInfo<Article> query(Article article) {
         List<Article> list = articleService.query(article);

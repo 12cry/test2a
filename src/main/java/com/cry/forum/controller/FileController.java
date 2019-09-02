@@ -39,7 +39,7 @@ public class FileController {
 //                .path("/f/")
 //                .path(fileName)
 //                .toUriString();
-        String url = fileProperties.getUploadUrl()+"/f/"+fileName;
+        String url = fileProperties.getUploadUrl()+fileName;
         File f = new File();
         f.setName(fileName);
         f.setUrl(url);
