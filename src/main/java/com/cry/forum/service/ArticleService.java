@@ -2,6 +2,7 @@ package com.cry.forum.service;
 
 import com.cry.forum.mapper.ArticleMapper;
 import com.cry.forum.model.Article;
+import com.cry.forum.vo.ArticleVO;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,11 +25,11 @@ public class ArticleService {
         return list;
     }
 
-    public List<Article> query(Article article) {
+    public List<ArticleVO> query(Article article) {
         if (article.getPage() != null && article.getRows() != null) {
             PageHelper.startPage(article.getPage(), article.getRows()).setOrderBy("create_time desc");
         }
-        List<Article> list = articleMapper.select(article);
+        List<ArticleVO> list = articleMapper.query();
         return list;
     }
 

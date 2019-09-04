@@ -2,6 +2,7 @@ package com.cry.forum.controller;
 
 import com.cry.forum.model.Article;
 import com.cry.forum.service.ArticleService;
+import com.cry.forum.vo.ArticleVO;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +23,9 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "query")
-    public PageInfo<Article> query(Article article) {
-        List<Article> list = articleService.query(article);
-        return new PageInfo<Article>(list);
+    public PageInfo<ArticleVO> query(Article article) {
+        List<ArticleVO> list = articleService.query(article);
+        return new PageInfo<ArticleVO>(list);
     }
 
     @RequestMapping(value = "/queryById/{id}")

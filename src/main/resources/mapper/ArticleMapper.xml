@@ -18,4 +18,7 @@
     <result column="Importance" jdbcType="INTEGER" property="importance" />
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
+  <select id="query" resultType="com.cry.forum.vo.ArticleVO">
+    select (select count(1) from comment t2 where t2.target_id =t.id) comment_num,t.* from article t
+  </select>
 </mapper>

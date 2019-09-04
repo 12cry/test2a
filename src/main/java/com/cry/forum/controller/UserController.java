@@ -31,11 +31,16 @@ public class UserController {
         public String username;
     }
 
-    @PostMapping("/login")
-    public ModelMap login(@RequestBody LoginVO vo) throws JSONException {
+    @PostMapping("/setUserInfo")
+    public void setUserInfo(@RequestBody User user){
+        userService.setUseInfo(user);
+    }
+    @PostMapping("/loginByCode")
+    public ModelMap loginByCode(@RequestBody Map<String,String> map) throws JSONException {
         ModelMap mm = new ModelMap();
 
-        String token = userService.login(vo);
+        String code = map.get("code");
+        String token = userService.loginByCode(code);
         mm.addAttribute("token", token);
         return mm;
     }
