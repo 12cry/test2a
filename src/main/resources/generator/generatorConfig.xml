@@ -27,7 +27,8 @@
         <javaClientGenerator targetPackage="com.cry.forum.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
-        <table tableName="qaa">
+        <table tableName="config">
+<!--        <table tableName="qaa">-->
 <!--        <table tableName="article">-->
 <!--        <table tableName="user_comment">-->
 <!--        <table tableName="user_post">-->
