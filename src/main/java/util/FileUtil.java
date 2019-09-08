@@ -54,6 +54,9 @@ public class FileUtil {
                 String attributeStr = matcherForAttrib.group(1);
                 if (attributeStr.indexOf("www.javascriptvue.com") > 0) {
                     result = matcherForTag.find();
+                    if (imageShortIndex == index) {
+                        imageShort = attributeStr;
+                    }
                     continue;
                 }
                 String fileName = codeFileName(attributeStr);
