@@ -23,7 +23,7 @@ public class ArticleService {
 
     public List<Article> query2(Article article) {
         if (article.getPage() != null && article.getRows() != null) {
-            PageHelper.startPage(article.getPage(), article.getRows()).setOrderBy("create_time desc");
+            PageHelper.startPage(article.getPage(), article.getRows()).setOrderBy("public_time desc");
         }
         List<Article> list = articleMapper.select(article);
         return list;
@@ -31,7 +31,7 @@ public class ArticleService {
 
     public List<ArticleVO> query(Article article) {
         if (article.getPage() != null && article.getRows() != null) {
-            PageHelper.startPage(article.getPage(), article.getRows()).setOrderBy("create_time desc");
+            PageHelper.startPage(article.getPage(), article.getRows()).setOrderBy("public_time desc");
         }
         List<ArticleVO> list = articleMapper.query();
         return list;
