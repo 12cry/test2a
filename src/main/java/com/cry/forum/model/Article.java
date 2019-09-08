@@ -11,6 +11,7 @@ public class Article extends BaseEntity{
 
     @Column(name = "image_short")
     private String imageShort;
+    private int imageShortIndex;
 
     private String author;
 
@@ -32,6 +33,14 @@ public class Article extends BaseEntity{
     private Integer importance;
 
     private String content;
+
+    public int getImageShortIndex() {
+        return imageShortIndex;
+    }
+
+    public void setImageShortIndex(int imageShortIndex) {
+        this.imageShortIndex = imageShortIndex;
+    }
 
     /**
      * @return title

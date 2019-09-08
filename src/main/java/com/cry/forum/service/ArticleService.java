@@ -1,11 +1,13 @@
 package com.cry.forum.service;
 
+import com.cry.forum.common.FileProperties;
 import com.cry.forum.mapper.ArticleMapper;
 import com.cry.forum.model.Article;
 import com.cry.forum.vo.ArticleVO;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import util.FileUtil;
 
 import java.util.Date;
 import java.util.List;
@@ -16,6 +18,8 @@ public class ArticleService {
     @Autowired
     ArticleMapper articleMapper;
 
+    @Autowired
+    private FileProperties fileProperties;
 
     public List<Article> query2(Article article) {
         if (article.getPage() != null && article.getRows() != null) {
@@ -36,8 +40,8 @@ public class ArticleService {
     public Article queryById(String id) {
         return articleMapper.selectByPrimaryKey(id);
     }
-
     public Article save(Article article) {
+        FileUtil.replaceImgTag(article,fileProperties.getUploadPath(),fileProperties.getDownloadPath());
         Date now = new Date();
         article.setUpdateTime(now);
         article.setPublicTime(now);

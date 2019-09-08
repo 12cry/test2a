@@ -8,7 +8,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-import util.CryStringUtil;
+import util.FileUtil;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -24,7 +24,7 @@ public class FileService {
 
     @Autowired
     public FileService(FileProperties fileProperties) {
-        this.fileStorageLocation = Paths.get(fileProperties.getUploadDir()).toAbsolutePath().normalize();
+        this.fileStorageLocation = Paths.get(fileProperties.getUploadPath()).toAbsolutePath().normalize();
         try {
             Files.createDirectories(this.fileStorageLocation);
         } catch (Exception ex) {
@@ -49,8 +49,7 @@ public class FileService {
 //            }
 
             // Copy file to the target location (Replacing existing file with the same name)
-            String ext = fileName.substring(fileName.lastIndexOf("."));
-            fileName = "u-"+ CryStringUtil.genStringByTime()+ext;
+            fileName = FileUtil.codeFileName(fileName);
             Path targetLocation = this.fileStorageLocation.resolve(fileName);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 

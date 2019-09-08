@@ -4,21 +4,22 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "file")
 public class FileProperties {
-    private String uploadDir;
-    private String uploadUrl;
+    private String uploadPath;
+    private String downloadPath;
 
-    public String getUploadUrl() {
-        return uploadUrl;
+    public String getUploadPath() {
+        return uploadPath;
     }
 
-    public void setUploadUrl(String uploadUrl) {
-        this.uploadUrl = uploadUrl;
+    public void setUploadPath(String uploadPath) {
+        this.uploadPath = uploadPath;
     }
 
-    public String getUploadDir() {
-        return uploadDir;
+    public String getDownloadPath() {
+        return downloadPath;
     }
-    public void setUploadDir(String uploadDir) {
-        this.uploadDir = uploadDir;
+
+    public void setDownloadPath(String downloadPath) {
+        this.downloadPath = downloadPath;
     }
 }
