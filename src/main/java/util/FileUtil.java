@@ -11,6 +11,8 @@ import java.util.regex.Pattern;
 
 public class FileUtil {
     public static void main(String[] args) {
+        String s = "http://www.javascriptvue.com/f/u-20190908214720076-1938730684.jpg";
+        System.out.println(s.substring(s.lastIndexOf("/")));
     }
 
     public static String codeFileName(String fileName) {
@@ -46,7 +48,10 @@ public class FileUtil {
                 if (attributeStr.indexOf("www.javascriptvue.com") > 0) {
                     result = matcherForTag.find();
                     if (imageShortIndex == index) {
+                        System.out.println("1111111111");
+                        System.out.println(attributeStr);
                         imageShort = attributeStr.substring(attributeStr.lastIndexOf("/"));
+                        System.out.println(imageShort);
                     }
                     continue;
                 }
