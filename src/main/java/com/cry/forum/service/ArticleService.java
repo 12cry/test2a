@@ -44,7 +44,7 @@ public class ArticleService {
         FileUtil.replaceImgTag(article,fileProperties.getUploadPath(),fileProperties.getDownloadPath());
         Date now = new Date();
         article.setUpdateTime(now);
-        article.setPublicTime(now);
+//        article.setPublicTime(now);
         if (article.getId() != null) {
             articleMapper.updateByPrimaryKey(article);
         } else {
