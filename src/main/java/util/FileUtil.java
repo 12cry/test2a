@@ -10,16 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FileUtil {
-    //    public static void main(String[] args) throws IOException {
-//        FileUtil.downLoadFromUrl("http://p1.pstatp.com/large/a740005b144ccc23af7", "test.jpg", "./", "aa");
-//    }
     public static void main(String[] args) {
-        StringBuffer content = new StringBuffer();
-        content.append("<ul class=\"imgBox\"><li><img id=\"160424\" src=\"uploads/allimg/160424/1-160424120T1-50.jpg\" class=\"src_class\"></li>");
-        content.append("<li><img id=\"150628\" src=\"uploads/allimg/150628/1-15062Q12247.jpg\" class=\"src_class\"></li></ul>");
-        System.out.println("原始字符串为:" + content.toString());
-        String newStr = FileUtil.replaceHtmlTag(content.toString(), "img", "src", "src=\"http://junlenet.com/", "\"");
-        System.out.println("  替换后为:" + newStr);
     }
 
     public static String codeFileName(String fileName) {
@@ -55,7 +46,7 @@ public class FileUtil {
                 if (attributeStr.indexOf("www.javascriptvue.com") > 0) {
                     result = matcherForTag.find();
                     if (imageShortIndex == index) {
-                        imageShort = attributeStr;
+                        imageShort = attributeStr.substring(attributeStr.lastIndexOf("/"));
                     }
                     continue;
                 }
