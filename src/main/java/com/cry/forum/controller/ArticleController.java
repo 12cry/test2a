@@ -17,13 +17,13 @@ public class ArticleController {
 
 
     @RequestMapping(value = "query2")
-    public PageInfo<Article> query2(Article article) {
+    public PageInfo<Article> query2(@RequestBody Article article) {
         List<Article> list = articleService.query2(article);
         return new PageInfo<Article>(list);
     }
 
     @RequestMapping(value = "query")
-    public PageInfo<ArticleVO> query(Article article) {
+    public PageInfo<ArticleVO> query(@RequestBody Article article) {
         List<ArticleVO> list = articleService.query(article);
         return new PageInfo<ArticleVO>(list);
     }
