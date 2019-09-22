@@ -43,6 +43,6 @@ public class Application extends SpringBootServletInitializer implements Command
 
     @RequestMapping("/")
     String home() {
-        return "redirect:countries";
+        return "redirect:comment";
     }
 }

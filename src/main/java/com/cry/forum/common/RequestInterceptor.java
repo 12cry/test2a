@@ -17,6 +17,15 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
             Claims claims = Jwt.parseJWT(token);
             String userId = claims.getSubject();
             request.setAttribute("userId", userId);
+        }else{
+            String servletPath = request.getServletPath();
+            if(servletPath.indexOf("loginByCode")>0){
+                return true;
+            }
+            if("1".equals(request.getParameter("cry"))){
+               return true;
+            }
+            return false;
         }
         return super.preHandle(request, response, handler);
     }
