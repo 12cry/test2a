@@ -19,11 +19,15 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
             request.setAttribute("userId", userId);
         }else{
             String servletPath = request.getServletPath();
-            if(servletPath.indexOf("loginByCode")>0){
+            String header = request.getHeader("X-Token");
+            if(servletPath.indexOf("loginByCode")>0||servletPath.indexOf("login2")>0){
                 return true;
             }
             if("1".equals(request.getParameter("cry"))){
                return true;
+            }
+            if(StringUtil.isNotEmpty(header)){
+                return true;
             }
             return false;
         }
