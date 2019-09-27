@@ -1,6 +1,7 @@
 package com.cry.forum.controller;
 
 import com.cry.forum.model.User;
+import com.cry.forum.model.UserInfo;
 import com.cry.forum.service.UserService;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,14 @@ public class UserController {
         public String username;
     }
 
+    @PostMapping("/queryUserInfo")
+    public UserInfo queryUserInfo(){
+        return userService.queryUserInfo();
+    }
+    @PostMapping("/updateUserInfo")
+    public void updateUserInfo(@RequestBody UserInfo userInfo){
+        userService.updateUserInfo(userInfo);
+    }
     @PostMapping("/setUserInfo")
     public void setUserInfo(@RequestBody User user){
         userService.setUseInfo(user);
