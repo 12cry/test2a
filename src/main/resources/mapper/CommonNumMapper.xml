@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cry.forum.mapper.CommonNumMapper" >
-  <resultMap id="BaseResultMap" type="com.cry.forum.model.CommonNum" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cry.forum.mapper.CommonNumMapper">
+  <resultMap id="BaseResultMap" type="com.cry.forum.model.CommonNum">
     <!--
       WARNING - @mbg.generated
     -->
-    <result column="id" property="id" jdbcType="VARCHAR" />
-    <result column="code" property="code" jdbcType="VARCHAR" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="target_id" property="targetId" jdbcType="VARCHAR" />
-    <result column="z1" property="z1" jdbcType="INTEGER" />
-    <result column="z2" property="z2" jdbcType="INTEGER" />
-    <result column="z3" property="z3" jdbcType="INTEGER" />
-    <result column="z4" property="z4" jdbcType="INTEGER" />
-    <result column="z5" property="z5" jdbcType="INTEGER" />
-    <result column="z6" property="z6" jdbcType="INTEGER" />
-    <result column="z7" property="z7" jdbcType="INTEGER" />
-    <result column="z8" property="z8" jdbcType="INTEGER" />
-    <result column="z9" property="z9" jdbcType="INTEGER" />
-    <result column="z10" property="z10" jdbcType="INTEGER" />
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="target_id" jdbcType="VARCHAR" property="targetId" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="z1" jdbcType="INTEGER" property="z1" />
+    <result column="z2" jdbcType="INTEGER" property="z2" />
+    <result column="z3" jdbcType="INTEGER" property="z3" />
+    <result column="z4" jdbcType="INTEGER" property="z4" />
+    <result column="z5" jdbcType="INTEGER" property="z5" />
+    <result column="z6" jdbcType="INTEGER" property="z6" />
+    <result column="z7" jdbcType="INTEGER" property="z7" />
+    <result column="z8" jdbcType="INTEGER" property="z8" />
+    <result column="z9" jdbcType="INTEGER" property="z9" />
+    <result column="z10" jdbcType="INTEGER" property="z10" />
   </resultMap>
+
 </mapper>

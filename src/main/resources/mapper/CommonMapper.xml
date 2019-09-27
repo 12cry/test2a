@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cry.forum.mapper.CommonMapper" >
+  <resultMap id="BaseResultMap" type="com.cry.forum.model.Common" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="target_id" property="targetId" jdbcType="VARCHAR" />
+    <result column="z1" property="z1" jdbcType="VARCHAR" />
+    <result column="z2" property="z2" jdbcType="VARCHAR" />
+    <result column="z3" property="z3" jdbcType="VARCHAR" />
+    <result column="z4" property="z4" jdbcType="VARCHAR" />
+    <result column="z5" property="z5" jdbcType="VARCHAR" />
+    <result column="z6" property="z6" jdbcType="VARCHAR" />
+    <result column="z7" property="z7" jdbcType="VARCHAR" />
+    <result column="z8" property="z8" jdbcType="VARCHAR" />
+    <result column="z9" property="z9" jdbcType="VARCHAR" />
+    <result column="z10" property="z10" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="queryScore" resultType="com.cry.forum.model.Common">
+    select * from common where target_id = #{targetId} order by z1,z2
+  </select>
+</mapper>
