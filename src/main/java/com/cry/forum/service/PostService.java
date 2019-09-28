@@ -1,10 +1,7 @@
 package com.cry.forum.service;
 
 import com.cry.forum.mapper.*;
-import com.cry.forum.model.File;
-import com.cry.forum.model.Post;
-import com.cry.forum.model.User;
-import com.cry.forum.model.UserPost;
+import com.cry.forum.model.*;
 import com.cry.forum.vo.CommentVO;
 import com.cry.forum.vo.PostVO;
 import com.github.pagehelper.PageHelper;
@@ -30,6 +27,9 @@ public class PostService {
     FileMapper fileMapper;
     @Autowired
     UserPostMapper userPostMapper;
+
+    @Autowired
+    UserService userService;
 
     public void appreciate(UserPost userPost) {
 
@@ -59,7 +59,9 @@ public class PostService {
         Date now = new Date();
 
         String userId = Request.getCurrentUserId();
-        User user = userMapper.selectByPrimaryKey(userId);
+        UserInfo userInfo = userService.queryCurrentUserInfo();
+//        User user = userMapper.selectByPrimaryKey(userId);
+
         post.setCreateTime(now);
         post.setUserId(userId);
         postMapper.insert(post);
@@ -77,7 +79,7 @@ public class PostService {
 
         PostVO postVO = new PostVO();
         postVO.setFileList(fileList);
-        BeanUtils.copyProperties(user, postVO);
+        BeanUtils.copyProperties(userInfo, postVO);
         BeanUtils.copyProperties(post, postVO);
         return postVO;
 

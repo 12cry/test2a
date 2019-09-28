@@ -1,7 +1,9 @@
 package com.cry.forum.service;
 
+import com.cry.forum.mapper.UserInfoMapper;
 import com.cry.forum.mapper.UserMapper;
 import com.cry.forum.model.User;
+import com.cry.forum.model.UserInfo;
 import com.github.pagehelper.PageHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,40 +21,49 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private UserInfoMapper userInfoMapper;
 
-    public List<User> queryUserList(User user){
-        if (user.getPage() != null && user.getRows() != null) {
-            PageHelper.startPage(user.getPage(), user.getRows()).setOrderBy("create_time desc");
+    public List<UserInfo> queryUserInfoList(UserInfo userInfo){
+        if (userInfo.getPage() != null && userInfo.getRows() != null) {
+            PageHelper.startPage(userInfo.getPage(), userInfo.getRows()).setOrderBy("create_time desc");
         }
-        String value = user.getName();
+        String value = userInfo.getName();
         if(StringUtils.isEmpty(value)){
-            return userMapper.queryListDefault();
+            return userInfoMapper.queryListDefault();
         }
         value = "%"+value+"%";
-        List<User> list = userMapper.queryList(value);
+        List<UserInfo> list = userInfoMapper.queryList(value);
         return list;
     }
-    public User queryCurrentUser(){
-        String userId = Request.getCurrentUserId();
-        User user = new User();
-        List<User> list = userMapper.select(user);
-        return list.isEmpty()?new User():list.get(0);
+//    public User queryCurrentUser(){
+//        String userId = Request.getCurrentUserId();
+//        User user = new User();
+//        List<User> list = userMapper.select(user);
+//        return list.isEmpty()?new User():list.get(0);
+//    }
+    public void updateUserInfo(UserInfo userInfo){
+        userInfo.setUpdateTime(new Date());
+        userInfoMapper.updateByPrimaryKey(userInfo);
     }
-    public void updateUser(User user){
-        user.setUpdateTime(new Date());
-        userMapper.updateByPrimaryKey(user);
-    }
-    public void setUseInfo(User user) {
+    public UserInfo queryCurrentUserInfo(){
         String userId = Request.getCurrentUserId();
-        User existUser = userMapper.selectByPrimaryKey(userId);
-        existUser.setNickName(user.getNickName());
-        existUser.setAvatarUrl(user.getAvatarUrl());
-        existUser.setCountry(user.getCountry());
-        existUser.setCity(user.getCity());
-        existUser.setProvince(user.getProvince());
-        existUser.setGender(user.getGender());
-        existUser.setUpdateTime(new Date());
-        userMapper.updateByPrimaryKey(existUser);
+        UserInfo userInfoQuery = new UserInfo();
+        userInfoQuery.setUserId(userId);
+        List<UserInfo> list = userInfoMapper.select(userInfoQuery);
+        UserInfo existUserInfo = list.get(0);
+        return existUserInfo;
+    }
+    public void setUserInfo(UserInfo userInfo) {
+        UserInfo existUserInfo = queryCurrentUserInfo();
+        existUserInfo.setNickName(userInfo.getNickName());
+        existUserInfo.setAvatarUrl(userInfo.getAvatarUrl());
+        existUserInfo.setCountry(userInfo.getCountry());
+        existUserInfo.setCity(userInfo.getCity());
+        existUserInfo.setProvince(userInfo.getProvince());
+        existUserInfo.setGender(userInfo.getGender());
+        existUserInfo.setUpdateTime(new Date());
+        userInfoMapper.updateByPrimaryKey(existUserInfo);
     }
 
     public String loginByCode(String code) throws JSONException {
@@ -68,13 +79,15 @@ public class UserService {
             user = new User();
             user.setCreateTime(now);
             user.setOpenid(openid);
-
-            user.setBirthday("2000-01");
-            user.setEntrance("2019");
-            user.setHometown("中国");
             userMapper.insert(user);
-        } else {
-            user.setUpdateTime(now);
+
+            UserInfo userInfo = new UserInfo();
+            userInfo.setUserId(user.getId());
+            userInfo.setCreateTime(now);
+            userInfo.setBirthday("2000-01");
+            userInfo.setEntrance("2019");
+            userInfo.setHometown("中国");
+            userInfoMapper.insert(userInfo);
         }
 
         String token = Jwt.createJWT(user.getId());

@@ -4,8 +4,8 @@ import com.cry.forum.mapper.CommentMapper;
 import com.cry.forum.mapper.UserCommentMapper;
 import com.cry.forum.mapper.UserMapper;
 import com.cry.forum.model.Comment;
-import com.cry.forum.model.User;
 import com.cry.forum.model.UserComment;
+import com.cry.forum.model.UserInfo;
 import com.cry.forum.vo.CommentVO;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
@@ -25,6 +25,8 @@ public class CommentService {
     UserMapper userMapper;
     @Autowired
     UserCommentMapper userCommentMapper;
+    @Autowired
+    UserService userService;
 
     public void appreciate(UserComment userComment) {
 
@@ -46,13 +48,14 @@ public class CommentService {
 
     public CommentVO save(Comment comment) {
         String userId= Request.getCurrentUserId();
-        User user = userMapper.selectByPrimaryKey(userId);
-        comment.setUserId(user.getId());
+//        User user = userMapper.selectByPrimaryKey(userId);
+        UserInfo userInfo = userService.queryCurrentUserInfo();
+        comment.setUserId(userId);
         comment.setCreateTime(new Date());
         commentMapper.insert(comment);
 
         CommentVO commentVO = new CommentVO();
-        BeanUtils.copyProperties(user,commentVO);
+        BeanUtils.copyProperties(userInfo,commentVO);
         BeanUtils.copyProperties(comment, commentVO);
 
         return commentVO;

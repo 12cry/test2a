@@ -19,15 +19,15 @@
     (SELECT
             t1.avatar_url
         FROM
-            user t1
+            user_info t1
         WHERE
-            t.user_id = t1.id) avatar_url,
+            t.user_id = t1.user_id) avatar_url,
     (SELECT
             t1.nick_name
         FROM
-            user t1
+            user_info t1
         WHERE
-            t.user_id = t1.id) nick_name,
+            t.user_id = t1.user_id) nick_name,
     (SELECT
             t1.appreciate
         FROM
@@ -44,8 +44,8 @@ WHERE
     <!--    select t.* from comment t where t.pid is null-->
     <!--</select>-->
     <select id="queryByPid" resultType="com.cry.forum.vo.CommentVO">
-    select t.*,(select t1.avatar_url from user t1 where t.user_id = t1.id) avatar_url,(select t1.nick_name from user t1
-     where t.user_id = t1.id) nick_name  from comment t where t.pid =#{pid}
+    select t.*,(select t1.avatar_url from user_info t1 where t.user_id = t1.user_id) avatar_url,(select t1.nick_name from user_info t1
+     where t.user_id = t1.user_id) nick_name  from comment t where t.pid =#{pid}
 </select>
 
 </mapper>

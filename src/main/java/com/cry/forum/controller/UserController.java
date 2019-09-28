@@ -1,6 +1,7 @@
 package com.cry.forum.controller;
 
 import com.cry.forum.model.User;
+import com.cry.forum.model.UserInfo;
 import com.cry.forum.service.UserService;
 import com.github.pagehelper.PageInfo;
 import org.json.JSONException;
@@ -33,26 +34,29 @@ public class UserController {
     }
 
 
-    @PostMapping("/queryList")
-    public PageInfo<User> queryUserList(@RequestBody User user) {
-        List<User> list =  userService.queryUserList(user);
+    @PostMapping("/queryUserInfoList")
+    public PageInfo<UserInfo> queryUserInfoList(@RequestBody UserInfo userInfo) {
+        List<UserInfo> list = userService.queryUserInfoList(userInfo);
         return new PageInfo<>(list);
     }
 
-    @PostMapping("/queryCurrentUser")
-    public User queryCurrentUser(){
-        return userService.queryCurrentUser();
+    @PostMapping("/queryCurrentUserInfo")
+    public UserInfo queryCurrentUser() {
+        return userService.queryCurrentUserInfo();
     }
-    @PostMapping("/updateUser")
-    public void updateUser(@RequestBody User user){
-        userService.updateUser(user);
+
+    @PostMapping("/updateUserInfo")
+    public void updateUserInfo(@RequestBody UserInfo userInfo) {
+        userService.updateUserInfo(userInfo);
     }
+
     @PostMapping("/setUserInfo")
-    public void setUser(@RequestBody User user){
-        userService.setUseInfo(user);
+    public void setUser(@RequestBody UserInfo userInfo) {
+        userService.setUserInfo(userInfo);
     }
+
     @PostMapping("/loginByCode")
-    public ModelMap loginByCode(@RequestBody Map<String,String> map) throws JSONException {
+    public ModelMap loginByCode(@RequestBody Map<String, String> map) throws JSONException {
         ModelMap mm = new ModelMap();
 
         String code = map.get("code");
@@ -78,7 +82,7 @@ public class UserController {
         Map<String, List<String>> data = new HashMap<>();
         List<String> roles = new ArrayList<>();
         roles.add("admin");
-        data.put("roles",roles);
+        data.put("roles", roles);
         mm.addAttribute("data", data);
         return mm;
     }
