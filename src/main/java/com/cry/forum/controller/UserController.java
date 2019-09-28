@@ -1,7 +1,6 @@
 package com.cry.forum.controller;
 
 import com.cry.forum.model.User;
-import com.cry.forum.model.UserInfo;
 import com.cry.forum.service.UserService;
 import com.github.pagehelper.PageInfo;
 import org.json.JSONException;
@@ -34,22 +33,22 @@ public class UserController {
     }
 
 
-    @PostMapping("/queryUserInfoList")
-    public PageInfo<UserInfo> queryUserInfoList(@RequestBody UserInfo userInfo) {
-        List<UserInfo> list =  userService.queryUserInfoList(userInfo);
+    @PostMapping("/queryList")
+    public PageInfo<User> queryUserList(@RequestBody User user) {
+        List<User> list =  userService.queryUserList(user);
         return new PageInfo<>(list);
     }
 
-    @PostMapping("/queryUserInfo")
-    public UserInfo queryUserInfo(){
-        return userService.queryUserInfo();
+    @PostMapping("/queryCurrentUser")
+    public User queryCurrentUser(){
+        return userService.queryCurrentUser();
     }
-    @PostMapping("/updateUserInfo")
-    public void updateUserInfo(@RequestBody UserInfo userInfo){
-        userService.updateUserInfo(userInfo);
+    @PostMapping("/updateUser")
+    public void updateUser(@RequestBody User user){
+        userService.updateUser(user);
     }
     @PostMapping("/setUserInfo")
-    public void setUserInfo(@RequestBody User user){
+    public void setUser(@RequestBody User user){
         userService.setUseInfo(user);
     }
     @PostMapping("/loginByCode")
@@ -73,7 +72,7 @@ public class UserController {
     }
 
     @RequestMapping("/info")
-    public ModelMap getUserInfo() {
+    public ModelMap getUser() {
         ModelMap mm = new ModelMap();
         mm.addAttribute("code", 20000);
         Map<String, List<String>> data = new HashMap<>();

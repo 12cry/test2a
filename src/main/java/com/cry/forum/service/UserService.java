@@ -1,9 +1,7 @@
 package com.cry.forum.service;
 
-import com.cry.forum.mapper.UserInfoMapper;
 import com.cry.forum.mapper.UserMapper;
 import com.cry.forum.model.User;
-import com.cry.forum.model.UserInfo;
 import com.github.pagehelper.PageHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,30 +20,27 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    @Autowired
-    UserInfoMapper userInfoMapper;
-
-    public List<UserInfo> queryUserInfoList(UserInfo userInfo){
-        if (userInfo.getPage() != null && userInfo.getRows() != null) {
-            PageHelper.startPage(userInfo.getPage(), userInfo.getRows()).setOrderBy("create_time desc");
+    public List<User> queryUserList(User user){
+        if (user.getPage() != null && user.getRows() != null) {
+            PageHelper.startPage(user.getPage(), user.getRows()).setOrderBy("create_time desc");
         }
-        String value = userInfo.getName();
+        String value = user.getName();
         if(StringUtils.isEmpty(value)){
-            return userInfoMapper.selectAll();
+            return userMapper.queryListDefault();
         }
         value = "%"+value+"%";
-        List<UserInfo> list = userInfoMapper.queryUserInfoList(value);
+        List<User> list = userMapper.queryList(value);
         return list;
     }
-    public UserInfo queryUserInfo(){
+    public User queryCurrentUser(){
         String userId = Request.getCurrentUserId();
-        UserInfo userInfo = new UserInfo();
-        List<UserInfo> list = userInfoMapper.select(userInfo);
-        return list.isEmpty()?new UserInfo():list.get(0);
+        User user = new User();
+        List<User> list = userMapper.select(user);
+        return list.isEmpty()?new User():list.get(0);
     }
-    public void updateUserInfo(UserInfo userInfo){
-        userInfo.setUpdateTime(new Date());
-        userInfoMapper.updateByPrimaryKey(userInfo);
+    public void updateUser(User user){
+        user.setUpdateTime(new Date());
+        userMapper.updateByPrimaryKey(user);
     }
     public void setUseInfo(User user) {
         String userId = Request.getCurrentUserId();
@@ -73,15 +68,11 @@ public class UserService {
             user = new User();
             user.setCreateTime(now);
             user.setOpenid(openid);
-            userMapper.insert(user);
 
-            UserInfo userInfo = new UserInfo();
-            userInfo.setUserId(user.getId());
-            userInfo.setCreateTime(now);
-            userInfo.setBirthday("2000-01");
-            userInfo.setEntrance("2019");
-            userInfo.setHometown("中国");
-            userInfoMapper.insert(userInfo);
+            user.setBirthday("2000-01");
+            user.setEntrance("2019");
+            user.setHometown("中国");
+            userMapper.insert(user);
         } else {
             user.setUpdateTime(now);
         }

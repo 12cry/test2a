@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cry.forum.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.cry.forum.model.User">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="openid" jdbcType="VARCHAR" property="openid" />
-    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
-    <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="gender" jdbcType="INTEGER" property="gender" />
-    <result column="country" jdbcType="VARCHAR" property="country" />
-    <result column="province" jdbcType="VARCHAR" property="province" />
-    <result column="city" jdbcType="VARCHAR" property="city" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="com.cry.forum.model.User">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="openid" jdbcType="VARCHAR" property="openid"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="gender" jdbcType="INTEGER" property="gender"/>
+        <result column="country" jdbcType="VARCHAR" property="country"/>
+        <result column="province" jdbcType="VARCHAR" property="province"/>
+        <result column="city" jdbcType="VARCHAR" property="city"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="school" jdbcType="VARCHAR" property="school"/>
+        <result column="major" jdbcType="VARCHAR" property="major"/>
+        <result column="birthday" jdbcType="VARCHAR" property="birthday"/>
+        <result column="entrance" jdbcType="VARCHAR" property="entrance"/>
+        <result column="hometown" jdbcType="VARCHAR" property="hometown"/>
+        <result column="memo" jdbcType="VARCHAR" property="memo"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
 
-  <select id="queryByOpenid" resultMap="BaseResultMap">
+
+    <select id="queryList" resultType="com.cry.forum.model.User">
+    select * from user t where (t.school like #{value} or t.major like #{value} or t.name like #{value} or  t.nick_name like #{value})
+        and t.name is not null and t.nick_name is not null
+  </select>
+    <select id="queryListDefault" resultType="com.cry.forum.model.User">
+    select * from user t where t.name is not null and t.nick_name is not null
+  </select>
+    <select id="queryByOpenid" resultMap="BaseResultMap">
     select * from user where openid = #{openid}
   </select>
 </mapper>
