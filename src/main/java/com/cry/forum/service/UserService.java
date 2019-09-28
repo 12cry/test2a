@@ -4,10 +4,12 @@ import com.cry.forum.mapper.UserInfoMapper;
 import com.cry.forum.mapper.UserMapper;
 import com.cry.forum.model.User;
 import com.cry.forum.model.UserInfo;
+import com.github.pagehelper.PageHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import util.Http;
 import util.Jwt;
 import util.Request;
@@ -23,6 +25,18 @@ public class UserService {
     @Autowired
     UserInfoMapper userInfoMapper;
 
+    public List<UserInfo> queryUserInfoList(UserInfo userInfo){
+        if (userInfo.getPage() != null && userInfo.getRows() != null) {
+            PageHelper.startPage(userInfo.getPage(), userInfo.getRows()).setOrderBy("create_time desc");
+        }
+        String value = userInfo.getName();
+        if(StringUtils.isEmpty(value)){
+            return userInfoMapper.selectAll();
+        }
+        value = "%"+value+"%";
+        List<UserInfo> list = userInfoMapper.queryUserInfoList(value);
+        return list;
+    }
     public UserInfo queryUserInfo(){
         String userId = Request.getCurrentUserId();
         UserInfo userInfo = new UserInfo();

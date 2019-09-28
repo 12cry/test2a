@@ -17,4 +17,8 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+
+  <select id="queryUserInfoList" resultType="com.cry.forum.model.UserInfo">
+    select * from user_info t where t.name like #{value} or t.school like #{value} or t.major like #{value}
+  </select>
 </mapper>

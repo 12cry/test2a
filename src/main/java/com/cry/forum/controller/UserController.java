@@ -3,6 +3,7 @@ package com.cry.forum.controller;
 import com.cry.forum.model.User;
 import com.cry.forum.model.UserInfo;
 import com.cry.forum.service.UserService;
+import com.github.pagehelper.PageInfo;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -30,6 +31,13 @@ public class UserController {
         public User user;
         public String code;
         public String username;
+    }
+
+
+    @PostMapping("/queryUserInfoList")
+    public PageInfo<UserInfo> queryUserInfoList(@RequestBody UserInfo userInfo) {
+        List<UserInfo> list =  userService.queryUserInfoList(userInfo);
+        return new PageInfo<>(list);
     }
 
     @PostMapping("/queryUserInfo")
