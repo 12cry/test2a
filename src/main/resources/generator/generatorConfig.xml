@@ -27,13 +27,15 @@
         <javaClientGenerator targetPackage="com.cry.forum.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
-<!--        <table tableName="common">-->
+        <table tableName="major">
+<!--        <table tableName="college">-->
+        <!--        <table tableName="common">-->
 <!--        <table tableName="config">-->
 <!--        <table tableName="qaa">-->
 <!--        <table tableName="article">-->
 <!--        <table tableName="user_comment">-->
 <!--        <table tableName="user_post">-->
-        <table tableName="user_info">
+<!--        <table tableName="user_info">-->
 <!--        <table tableName="user">-->
 <!--        <table tableName="file">-->
 <!--        <table tableName="post">-->
