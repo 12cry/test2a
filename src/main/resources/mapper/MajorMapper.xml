@@ -12,4 +12,7 @@
     <result column="course" property="course" jdbcType="VARCHAR" />
     <result column="target" property="target" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="queryByCollegeId" resultType="com.cry.forum.model.Major">
+    select * from major t where t.college_id = #{collegeId}
+  </select>
 </mapper>
