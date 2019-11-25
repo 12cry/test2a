@@ -18,7 +18,7 @@ public class ArticleVO {
 
     private Date updateTime;
 
-    private String cagetoryId;
+    private String categoryId;
 
     private String state;
 
@@ -142,17 +142,17 @@ public class ArticleVO {
     }
 
     /**
-     * @return cagetory_id
+     * @return category_id
      */
-    public String getCagetoryId() {
-        return cagetoryId;
+    public String getCategoryId() {
+        return categoryId;
     }
 
     /**
-     * @param cagetoryId
+     * @param categoryId
      */
-    public void setCagetoryId(String cagetoryId) {
-        this.cagetoryId = cagetoryId;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 
     /**

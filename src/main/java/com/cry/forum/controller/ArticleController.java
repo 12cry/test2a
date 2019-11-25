@@ -16,9 +16,9 @@ public class ArticleController {
     private ArticleService articleService;
 
 
-    @RequestMapping(value = "query2")
-    public PageInfo<Article> query2(@RequestBody Article article) {
-        List<Article> list = articleService.query2(article);
+    @RequestMapping(value = "queryByPage")
+    public PageInfo<Article> queryByPage(@RequestBody Article article) {
+        List<Article> list = articleService.queryByPage(article);
         return new PageInfo<Article>(list);
     }
 

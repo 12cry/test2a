@@ -13,7 +13,7 @@ public class PostVO {
 
     private String userId;
 
-    private String cagetoryId;
+    private String categoryId;
 
     private Date createTime;
 
@@ -67,12 +67,12 @@ public class PostVO {
         this.userId = userId;
     }
 
-    public String getCagetoryId() {
-        return cagetoryId;
+    public String getCategoryId() {
+        return categoryId;
     }
 
-    public void setCagetoryId(String cagetoryId) {
-        this.cagetoryId = cagetoryId;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 
     public Date getCreateTime() {

@@ -21,7 +21,7 @@ public class ArticleService {
     @Autowired
     private FileProperties fileProperties;
 
-    public List<Article> query2(Article article) {
+    public List<Article> queryByPage(Article article) {
         if (article.getPage() != null && article.getRows() != null) {
             PageHelper.startPage(article.getPage(), article.getRows()).setOrderBy("public_time desc");
         }

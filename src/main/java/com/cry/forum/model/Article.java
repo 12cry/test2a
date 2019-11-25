@@ -24,8 +24,8 @@ public class Article extends BaseEntity{
     @Column(name = "update_time")
     private Date updateTime;
 
-    @Column(name = "cagetory_id")
-    private String cagetoryId;
+    @Column(name = "category_id")
+    private String categoryId;
 
     private String state;
 
@@ -141,17 +141,17 @@ public class Article extends BaseEntity{
     }
 
     /**
-     * @return cagetory_id
+     * @return category_id
      */
-    public String getCagetoryId() {
-        return cagetoryId;
+    public String getCategoryId() {
+        return categoryId;
     }
 
     /**
-     * @param cagetoryId
+     * @param categoryId
      */
-    public void setCagetoryId(String cagetoryId) {
-        this.cagetoryId = cagetoryId;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 
     /**

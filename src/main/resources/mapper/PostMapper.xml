@@ -6,7 +6,7 @@
         <result column="title" jdbcType="VARCHAR" property="title"/>
         <result column="content" jdbcType="VARCHAR" property="content"/>
         <result column="user_id" jdbcType="VARCHAR" property="userId"/>
-        <result column="cagetory_id" jdbcType="VARCHAR" property="cagetoryId"/>
+        <result column="category_id" jdbcType="VARCHAR" property="categoryId"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="state" jdbcType="CHAR" property="state"/>
     </resultMap>

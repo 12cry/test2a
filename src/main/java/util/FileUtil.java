@@ -77,44 +77,6 @@ public class FileUtil {
         article.setContent(sb.toString());
     }
 
-    public static String replaceImgTag(String str, String uploadPath, String downloadPath) {
-        String tag = "img";
-        String tagAttrib = "src";
-        String regxpForTag = "<\\s*" + tag + "\\s+([^>]*)\\s*";
-        String regxpForTagAttrib = tagAttrib + "=\\s*\"([^\"]+)\"";
-        Pattern patternForTag = Pattern.compile(regxpForTag, Pattern.CASE_INSENSITIVE);
-        Pattern patternForAttrib = Pattern.compile(regxpForTagAttrib, Pattern.CASE_INSENSITIVE);
-        Matcher matcherForTag = patternForTag.matcher(str);
-        StringBuffer sb = new StringBuffer();
-        boolean result = matcherForTag.find();
-        while (result) {
-            StringBuffer sbreplace = new StringBuffer("<" + tag + " ");
-            Matcher matcherForAttrib = patternForAttrib.matcher(matcherForTag.group(1));
-
-            if (matcherForAttrib.find()) {
-                String attributeStr = matcherForAttrib.group(1);
-                if (attributeStr.indexOf("www.javascriptvue.com") > 0) {
-                    result = matcherForTag.find();
-                    continue;
-                }
-                String fileName = codeFileName(attributeStr);
-                try {
-                    downLoadFromUrl(attributeStr, fileName, uploadPath);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    result = matcherForTag.find();
-                    continue;
-                }
-
-                matcherForAttrib.appendReplacement(sbreplace, "src=\"" + downloadPath + fileName + "\" width=\"100%\" /");
-            }
-            matcherForTag.appendReplacement(sb, sbreplace.toString());
-            result = matcherForTag.find();
-        }
-        matcherForTag.appendTail(sb);
-        return sb.toString();
-    }
-
     public static void downLoadFromUrl(String urlStr, String fileName, String savePath) throws IOException {
         URL url = new URL(urlStr);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -148,15 +110,6 @@ public class FileUtil {
         System.out.println("info:" + url + " download success");
 
     }
-
-
-    /**
-     * 从输入流中获取字节数组
-     *
-     * @param inputStream
-     * @return
-     * @throws IOException
-     */
     public static byte[] readInputStream(InputStream inputStream) throws IOException {
         byte[] buffer = new byte[1024];
         int len = 0;
@@ -185,6 +138,44 @@ public class FileUtil {
 //                matcherForAttrib.appendReplacement(sbreplace, startTag + attributeStr + endTag);
             }
 //            matcherForAttrib.appendTail(sbreplace);
+            matcherForTag.appendReplacement(sb, sbreplace.toString());
+            result = matcherForTag.find();
+        }
+        matcherForTag.appendTail(sb);
+        return sb.toString();
+    }
+
+    public static String replaceImgTag(String str, String uploadPath, String downloadPath) {
+        String tag = "img";
+        String tagAttrib = "src";
+        String regxpForTag = "<\\s*" + tag + "\\s+([^>]*)\\s*";
+        String regxpForTagAttrib = tagAttrib + "=\\s*\"([^\"]+)\"";
+        Pattern patternForTag = Pattern.compile(regxpForTag, Pattern.CASE_INSENSITIVE);
+        Pattern patternForAttrib = Pattern.compile(regxpForTagAttrib, Pattern.CASE_INSENSITIVE);
+        Matcher matcherForTag = patternForTag.matcher(str);
+        StringBuffer sb = new StringBuffer();
+        boolean result = matcherForTag.find();
+        while (result) {
+            StringBuffer sbreplace = new StringBuffer("<" + tag + " ");
+            Matcher matcherForAttrib = patternForAttrib.matcher(matcherForTag.group(1));
+
+            if (matcherForAttrib.find()) {
+                String attributeStr = matcherForAttrib.group(1);
+                if (attributeStr.indexOf("www.javascriptvue.com") > 0) {
+                    result = matcherForTag.find();
+                    continue;
+                }
+                String fileName = codeFileName(attributeStr);
+                try {
+                    downLoadFromUrl(attributeStr, fileName, uploadPath);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    result = matcherForTag.find();
+                    continue;
+                }
+
+                matcherForAttrib.appendReplacement(sbreplace, "src=\"" + downloadPath + fileName + "\" width=\"100%\" /");
+            }
             matcherForTag.appendReplacement(sb, sbreplace.toString());
             result = matcherForTag.find();
         }

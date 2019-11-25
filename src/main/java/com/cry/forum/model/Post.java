@@ -12,8 +12,8 @@ public class Post extends BaseEntity{
     @Column(name = "user_id")
     private String userId;
 
-    @Column(name = "cagetory_id")
-    private String cagetoryId;
+    @Column(name = "category_id")
+    private String categoryId;
 
     @Column(name = "create_time")
     private Date createTime;
@@ -84,17 +84,17 @@ public class Post extends BaseEntity{
     }
 
     /**
-     * @return cagetory_id
+     * @return category_id
      */
-    public String getCagetoryId() {
-        return cagetoryId;
+    public String getCategoryId() {
+        return categoryId;
     }
 
     /**
-     * @param cagetoryId
+     * @param categoryId
      */
-    public void setCagetoryId(String cagetoryId) {
-        this.cagetoryId = cagetoryId;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 
     /**
