@@ -33,6 +33,24 @@ public class Article extends BaseEntity{
     private Integer importance;
 
     private String content;
+    private String sourceUri;
+    private String keys;
+
+    public String getSourceUri() {
+        return sourceUri;
+    }
+
+    public void setSourceUri(String sourceUri) {
+        this.sourceUri = sourceUri;
+    }
+
+    public String getKeys() {
+        return keys;
+    }
+
+    public void setKeys(String keys) {
+        this.keys = keys;
+    }
 
     public int getImageShortIndex() {
         return imageShortIndex;
