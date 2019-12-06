@@ -25,7 +25,7 @@ public class ArticleService {
         if (article.getPage() != null && article.getRows() != null) {
             PageHelper.startPage(article.getPage(), article.getRows()).setOrderBy("public_time desc");
         }
-        List<Article> list = articleMapper.select(article);
+        List<Article> list = articleMapper.queryByPage(article);
         return list;
     }
 

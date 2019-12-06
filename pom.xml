@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cry.test</groupId>
-    <artifactId>p1</artifactId>
+    <artifactId>p</artifactId>
     <version>1</version>
 
     <parent>

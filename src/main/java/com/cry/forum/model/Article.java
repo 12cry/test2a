@@ -34,7 +34,7 @@ public class Article extends BaseEntity{
 
     private String content;
     private String sourceUri;
-    private String keys;
+    private String keywords;
 
     public String getSourceUri() {
         return sourceUri;
@@ -45,11 +45,11 @@ public class Article extends BaseEntity{
     }
 
     public String getKeys() {
-        return keys;
+        return keywords;
     }
 
-    public void setKeys(String keys) {
-        this.keys = keys;
+    public void setKeys(String keywords) {
+        this.keywords = keywords;
     }
 
     public int getImageShortIndex() {

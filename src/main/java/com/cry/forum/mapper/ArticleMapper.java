@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ArticleMapper extends MyMapper<Article> {
     public List<ArticleVO> query();
+    public List<Article> queryByPage(Article article);
 }

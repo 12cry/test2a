@@ -18,9 +18,29 @@
         <result column="Importance" jdbcType="INTEGER" property="importance"/>
         <result column="content" jdbcType="LONGVARCHAR" property="content"/>
         <result column="source_uri" jdbcType="VARCHAR" property="sourceUri"/>
-        <result column="keys" jdbcType="VARCHAR" property="keys"/>
+        <result column="keywords" jdbcType="VARCHAR" property="keywords"/>
     </resultMap>
     <select id="query" resultType="com.cry.forum.vo.ArticleVO">
-    select (select count(1) from comment t2 where t2.target_id =t.id) comment_num,t.* from article t where t.state="02"
+    select (select count(1) from comment t2 where t2.target_id =t.id) comment_num,Id,
+       title,
+       content_short,
+       public_time,
+       create_time,
+       update_time,
+       category_id,
+       state,
+       Importance from article t where t.state="02"
   </select>
+    <select id="queryByPage" resultType="com.cry.forum.model.Article">
+SELECT Id,
+       title,
+       content_short,
+       public_time,
+       create_time,
+       update_time,
+       category_id,
+       state,
+       Importance
+from article t where t.state=#{state} and t.category_id=#{categoryId}
+    </select>
 </mapper>

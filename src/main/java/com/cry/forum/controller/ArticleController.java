@@ -15,9 +15,15 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
+    @RequestMapping(value = "queryByPageForAll")
+    public PageInfo<Article> queryByPageForAll(@RequestBody Article article) {
+        List<Article> list = articleService.queryByPage(article);
+        return new PageInfo<Article>(list);
+    }
 
     @RequestMapping(value = "queryByPage")
     public PageInfo<Article> queryByPage(@RequestBody Article article) {
+        article.setState("02");
         List<Article> list = articleService.queryByPage(article);
         return new PageInfo<Article>(list);
     }
