@@ -26,6 +26,9 @@ public class FileUtil {
 
     public static void replaceImgTag(Article article, String uploadPath, String downloadPath) {
         String str = article.getContent();
+        if (str == null) {
+            return;
+        }
         String tag = "img";
         String tagAttrib = "src";
         String regxpForTag = "<\\s*" + tag + "\\s+([^>]*)\\s*";
@@ -110,6 +113,7 @@ public class FileUtil {
         System.out.println("info:" + url + " download success");
 
     }
+
     public static byte[] readInputStream(InputStream inputStream) throws IOException {
         byte[] buffer = new byte[1024];
         int len = 0;

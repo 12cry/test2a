@@ -32,15 +32,21 @@
        Importance from article t where t.state="02"
   </select>
     <select id="queryByPage" resultType="com.cry.forum.model.Article">
-SELECT Id,
-       title,
-       content_short,
-       public_time,
-       create_time,
-       update_time,
-       category_id,
-       state,
-       Importance
-from article t where t.state=#{state} and t.category_id=#{categoryId}
+        SELECT Id,
+        title,
+        content_short,
+        public_time,
+        create_time,
+        update_time,
+        category_id,
+        state,
+        Importance
+        from article t where 1=1
+        <if test="state!=null and state!=''">
+            and t.state=#{state}
+        </if>
+        <if test="categoryId!=null and categoryId!=''">
+            and t.category_id=#{categoryId}
+        </if>
     </select>
 </mapper>
