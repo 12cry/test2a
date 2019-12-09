@@ -51,10 +51,7 @@ public class FileUtil {
                 if (attributeStr.indexOf("www.javascriptvue.com") > 0) {
                     result = matcherForTag.find();
                     if (imageShortIndex == index) {
-                        System.out.println("1111111111");
-                        System.out.println(attributeStr);
                         imageShort = attributeStr.substring(attributeStr.lastIndexOf("/"));
-                        System.out.println(imageShort);
                     }
                     continue;
                 }

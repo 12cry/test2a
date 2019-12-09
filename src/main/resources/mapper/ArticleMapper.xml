@@ -29,6 +29,7 @@
        update_time,
        category_id,
        state,
+       image_short,
        Importance from article t where t.state="02"
   </select>
     <select id="queryByPage" resultType="com.cry.forum.model.Article">
