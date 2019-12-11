@@ -39,6 +39,10 @@ public class ArticleController {
         return articleService.queryById(id);
     }
 
+    @PostMapping("/updateState")
+    public void updateState(@RequestBody Article article) {
+         articleService.updateState(article.getId(),article.getState());
+    }
     @PostMapping("/save")
     public Article save(@RequestBody Article article) {
         return articleService.save(article);

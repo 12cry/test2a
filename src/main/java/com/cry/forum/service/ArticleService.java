@@ -41,6 +41,13 @@ public class ArticleService {
         return articleMapper.selectByPrimaryKey(id);
     }
 
+    public void updateState(String id,String state){
+        Article article = new Article();
+        article.setId(id);
+        article.setState(state);
+        article.setUpdateTime(new Date());
+        articleMapper.updateByPrimaryKey(article);
+    }
     public Article save(Article article) {
         if ("02".equals(article.getState()) || "01".equals(article.getState())) {
             FileUtil.replaceImgTag(article, fileProperties.getUploadPath(), fileProperties.getDownloadPath());
