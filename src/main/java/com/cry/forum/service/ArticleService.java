@@ -46,7 +46,7 @@ public class ArticleService {
         article.setId(id);
         article.setState(state);
         article.setUpdateTime(new Date());
-        articleMapper.updateByPrimaryKey(article);
+        articleMapper.updateByPrimaryKeySelective(article);
     }
     public Article save(Article article) {
         if ("02".equals(article.getState()) || "01".equals(article.getState())) {

@@ -35,6 +35,7 @@
     <select id="queryByPage" resultType="com.cry.forum.model.Article">
         SELECT Id,
         title,
+        author,
         content_short,
         public_time,
         create_time,
