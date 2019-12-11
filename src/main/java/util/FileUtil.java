@@ -67,7 +67,7 @@ public class FileUtil {
                     imageShort = fileName;
                 }
 
-                matcherForAttrib.appendReplacement(sbreplace, "src=\"" + downloadPath + fileName + "\" width=\"100%\" /");
+                matcherForAttrib.appendReplacement(sbreplace, "src=\"" + downloadPath + fileName );
             }
             matcherForTag.appendReplacement(sb, sbreplace.toString());
             result = matcherForTag.find();
