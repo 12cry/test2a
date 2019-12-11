@@ -23,7 +23,7 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
             if(servletPath.indexOf("loginByCode")>0||servletPath.indexOf("login2")>0){
                 return true;
             }
-            if("1".equals(request.getParameter("cry"))){
+            if("2".equals(request.getParameter("cry"))){
                return true;
             }
             if(StringUtil.isNotEmpty(header)){

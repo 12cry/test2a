@@ -40,8 +40,11 @@ public class ArticleService {
     public Article queryById(String id) {
         return articleMapper.selectByPrimaryKey(id);
     }
+
     public Article save(Article article) {
-        FileUtil.replaceImgTag(article,fileProperties.getUploadPath(),fileProperties.getDownloadPath());
+        if ("02".equals(article.getState()) || "01".equals(article.getState())) {
+            FileUtil.replaceImgTag(article, fileProperties.getUploadPath(), fileProperties.getDownloadPath());
+        }
         Date now = new Date();
         article.setUpdateTime(now);
 //        article.setPublicTime(now);
