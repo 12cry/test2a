@@ -41,8 +41,8 @@ public class Application extends SpringBootServletInitializer implements Command
         logger.info("服务启动完成!");
     }
 
-    @RequestMapping("/")
-    String home() {
-        return "redirect:comment";
-    }
+//    @RequestMapping("/")
+//    String home() {
+//        return "redirect:comment";
+//    }
 }

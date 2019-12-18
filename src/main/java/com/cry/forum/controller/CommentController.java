@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+@CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping("/comment")
 public class CommentController {
@@ -20,7 +21,7 @@ public class CommentController {
 
 
     @RequestMapping(value = "appreciate")
-    public void appreciate(@RequestBody UserComment userComment){
+    public void appreciate(@RequestBody UserComment userComment) {
         commentService.appreciate(userComment);
     }
 
@@ -29,6 +30,7 @@ public class CommentController {
         List<CommentVO> list = commentService.query(comment);
         return new PageInfo<CommentVO>(list);
     }
+
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public CommentVO save(@RequestBody Comment comment) {
         return commentService.save(comment);

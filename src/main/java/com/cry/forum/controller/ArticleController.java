@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
@@ -28,11 +29,11 @@ public class ArticleController {
         return new PageInfo<Article>(list);
     }
 
-    @RequestMapping(value = "query")
-    public PageInfo<ArticleVO> query(@RequestBody Article article) {
-        List<ArticleVO> list = articleService.query(article);
-        return new PageInfo<ArticleVO>(list);
-    }
+//    @RequestMapping(value = "query")
+//    public PageInfo<ArticleVO> query(@RequestBody Article article) {
+//        List<ArticleVO> list = articleService.query(article);
+//        return new PageInfo<ArticleVO>(list);
+//    }
 
     @RequestMapping(value = "/queryById/{id}")
     public Article queryById(@PathVariable String id) {

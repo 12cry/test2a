@@ -3,6 +3,7 @@ package com.cry.forum.controller;
 import com.cry.forum.model.Common;
 import com.cry.forum.service.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

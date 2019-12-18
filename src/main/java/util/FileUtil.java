@@ -67,7 +67,7 @@ public class FileUtil {
                     imageShort = fileName;
                 }
 
-                matcherForAttrib.appendReplacement(sbreplace, "src=\"" + downloadPath + fileName );
+                matcherForAttrib.appendReplacement(sbreplace, "src=" + downloadPath + fileName );
             }
             matcherForTag.appendReplacement(sb, sbreplace.toString());
             result = matcherForTag.find();
@@ -120,68 +120,6 @@ public class FileUtil {
         }
         bos.close();
         return bos.toByteArray();
-    }
-
-    public static String replaceHtmlTag(String str, String tag, String tagAttrib, String startTag, String endTag) {
-        String regxpForTag = "<\\s*" + tag + "\\s+([^>]*)\\s*";
-        String regxpForTagAttrib = tagAttrib + "=\\s*\"([^\"]+)\"";
-        Pattern patternForTag = Pattern.compile(regxpForTag, Pattern.CASE_INSENSITIVE);
-        Pattern patternForAttrib = Pattern.compile(regxpForTagAttrib, Pattern.CASE_INSENSITIVE);
-        Matcher matcherForTag = patternForTag.matcher(str);
-        StringBuffer sb = new StringBuffer();
-        boolean result = matcherForTag.find();
-        while (result) {
-            StringBuffer sbreplace = new StringBuffer("<" + tag + " ");
-            Matcher matcherForAttrib = patternForAttrib.matcher(matcherForTag.group(1));
-            if (matcherForAttrib.find()) {
-                String attributeStr = matcherForAttrib.group(1);
-                matcherForAttrib.appendReplacement(sbreplace, "aa");
-//                matcherForAttrib.appendReplacement(sbreplace, startTag + attributeStr + endTag);
-            }
-//            matcherForAttrib.appendTail(sbreplace);
-            matcherForTag.appendReplacement(sb, sbreplace.toString());
-            result = matcherForTag.find();
-        }
-        matcherForTag.appendTail(sb);
-        return sb.toString();
-    }
-
-    public static String replaceImgTag(String str, String uploadPath, String downloadPath) {
-        String tag = "img";
-        String tagAttrib = "src";
-        String regxpForTag = "<\\s*" + tag + "\\s+([^>]*)\\s*";
-        String regxpForTagAttrib = tagAttrib + "=\\s*\"([^\"]+)\"";
-        Pattern patternForTag = Pattern.compile(regxpForTag, Pattern.CASE_INSENSITIVE);
-        Pattern patternForAttrib = Pattern.compile(regxpForTagAttrib, Pattern.CASE_INSENSITIVE);
-        Matcher matcherForTag = patternForTag.matcher(str);
-        StringBuffer sb = new StringBuffer();
-        boolean result = matcherForTag.find();
-        while (result) {
-            StringBuffer sbreplace = new StringBuffer("<" + tag + " ");
-            Matcher matcherForAttrib = patternForAttrib.matcher(matcherForTag.group(1));
-
-            if (matcherForAttrib.find()) {
-                String attributeStr = matcherForAttrib.group(1);
-                if (attributeStr.indexOf("www.javascriptvue.com") > 0) {
-                    result = matcherForTag.find();
-                    continue;
-                }
-                String fileName = codeFileName(attributeStr);
-                try {
-                    downLoadFromUrl(attributeStr, fileName, uploadPath);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    result = matcherForTag.find();
-                    continue;
-                }
-
-                matcherForAttrib.appendReplacement(sbreplace, "src=\"" + downloadPath + fileName + "\" width=\"100%\" /");
-            }
-            matcherForTag.appendReplacement(sb, sbreplace.toString());
-            result = matcherForTag.find();
-        }
-        matcherForTag.appendTail(sb);
-        return sb.toString();
     }
 
 
